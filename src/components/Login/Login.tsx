@@ -5,38 +5,34 @@ import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
-import { useUserRegistrationMutation } from "@/redux/api/authApi";
+import { useUserLoginMutation } from "@/redux/api/authApi";
 import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registrationSchema } from "@/schemas/registration";
+import { loginSchema } from "@/schemas/login";
 
 type FormValues = {
-  name: string;
   email: string;
   password: string;
-  contactNo: string | undefined;
-  address: string | undefined;
-  profileImg: string | undefined;
 };
 
-const RegistrationPage = () => {
-  const [userRegistration] = useUserRegistrationMutation();
+const LoginPage = () => {
+  const [userLogin] = useUserLoginMutation();
   const router = useRouter();
 
   // console.log(isLoggedIn());
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-    // console.log(data);
     try {
-      const res = await userRegistration({
-        ...data,
-        role: "customer",
-        profileImg: "",
-      });
-      console.log(res);
-        message.success("Registration successful!");
-          router.push("/login");
+      // console.log(data);
+      const res = await userLogin({ ...data }).unwrap();
+      // console.log(res);
+      if (res?.accessToken) {
+        // router.push("/profile");
+        message.success("Login successful!");
+      }
+      storeUserInfo({ accessToken: res?.accessToken });
+      // console.log(res);
     } catch (err: any) {
       console.error(err.message);
     }
@@ -59,27 +55,11 @@ const RegistrationPage = () => {
             margin: "15px 0px",
           }}
         >
-          First register your account
+          First login your account
         </h1>
         <div>
-          <Form
-            submitHandler={onSubmit}
-            resolver={yupResolver(registrationSchema)}
-          >
+          <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
             <div>
-              <FormInput
-                name="name"
-                type="text"
-                size="large"
-                label="Name"
-                required
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
               <FormInput
                 name="email"
                 type="email"
@@ -101,32 +81,8 @@ const RegistrationPage = () => {
                 required
               />
             </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                name="contactNo"
-                type="text"
-                size="large"
-                label="Contact No"
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                name="address"
-                type="text"
-                size="large"
-                label="Address"
-              />
-            </div>
             <Button type="primary" htmlType="submit">
-              Register
+              Login
             </Button>
           </Form>
         </div>
@@ -135,4 +91,4 @@ const RegistrationPage = () => {
   );
 };
 
-export default RegistrationPage;
+export default LoginPage;

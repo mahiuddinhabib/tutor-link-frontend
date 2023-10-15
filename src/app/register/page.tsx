@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "TL | Registration",
 };
 
-const Login = () => {
+const Register = () => {
   return (
     <>
       <RegistrationPage />
@@ -13,4 +13,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
