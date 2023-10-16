@@ -28,12 +28,19 @@ export interface IService {
   subjectId: string;
 }
 
+export interface IBooking {
+  id: string;
+  status: string;
+  userId: string;
+  availableServiceId: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 
 
 
-
-
+// -------------------------------------
 
 export interface IDepartment {
   id: string;
@@ -136,7 +143,6 @@ export interface IAcademicDepartment {
   updatedAt: string;
   __v: number;
 }
-
 
 export interface IBuilding {
   id: string;
