@@ -51,7 +51,7 @@ export const bookingApi = baseApi.injectEndpoints({
     }),
 
     // update existing ac semester endpoint
-    updateBooking: build.mutation({
+    updateBookingStatus: build.mutation({
       query: (data) => ({
         url: `${BOOKING_URL}/${data.id}`,
         method: "PATCH",
@@ -60,11 +60,12 @@ export const bookingApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.booking],
     }),
 
-    // delete existing ac semester endpoint
-    deleteBooking: build.mutation({
-      query: (id) => ({
-        url: `${BOOKING_URL}/${id}`,
+    // update existing ac semester endpoint
+    cancelOrCompleteBooking: build.mutation({
+      query: (data) => ({
+        url: `${BOOKING_URL}/${data.id}`,
         method: "DELETE",
+        data: data.body,
       }),
       invalidatesTags: [tagTypes.booking],
     }),
@@ -76,6 +77,6 @@ export const {
   useGetBookingsQuery, // get all hook
   useGetBookingHistoryQuery, // get single hook
   useGetSingleBookingQuery, // get single hook
-  useUpdateBookingMutation, // update hook,
-  useDeleteBookingMutation, // delete hook
+  useUpdateBookingStatusMutation, // update hook,
+  useCancelOrCompleteBookingMutation
 } = bookingApi;
