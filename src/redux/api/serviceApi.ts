@@ -9,7 +9,7 @@ export const serviceApi = baseApi.injectEndpoints({
     // create ac semester endpoint
     addService: build.mutation({
       query: (data) => ({
-        url: SERVICE_URL,
+        url: `${SERVICE_URL}/create-service`,
         method: "POST",
         data,
       }),
