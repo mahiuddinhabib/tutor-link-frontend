@@ -16,16 +16,7 @@ const CustomerPage = () => {
   const [deleteUser] = useDeleteUserMutation();
 
   const customers = users?.filter((b: any) => b.role === "customer");
-
-  /*   const updateHandler = async (id: string) => {
-    try {
-      console.log(id);
-      redirect(`/admin/customer/${id}`)
-      } catch (err: any) {
-      message.error(err.message);
-    }
-  };
- */
+  
   const deleteHandler = async (id: string) => {
     message.loading("Deleting.....", 0.8);
     try {

@@ -4,6 +4,7 @@ import { Button, Table, message } from "antd";
 import { useDeleteUserMutation, useGetUsersQuery } from "@/redux/api/userApi";
 import { useState } from "react";
 import CustomModal from "@/components/ui/CustomModal";
+import Link from "next/link";
 
 const TutorPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -15,21 +16,6 @@ const TutorPage = () => {
 
   const tutors = users?.filter((b: any) => b.role === "tutor");
 
-  const updateHandler = async (id: string) => {
-    try {
-      console.log(id);
-      /* const res = await cancelOrCompleteBooking({
-        id,
-        body: { status: "cancelled" },
-      });
-      if (res) {
-        message.success("Booking Cancelled");
-      } */
-    } catch (err: any) {
-      message.error(err.message);
-    }
-  };
-
   const deleteHandler = async (id: string) => {
     message.loading("Deleting.....", 0.8);
     try {
@@ -39,7 +25,7 @@ const TutorPage = () => {
         message.success("Tutor Deleted");
         setOpen(false);
       } else {
-        message.error("Tutor has active/pending service");
+        message.error("Tutor has active service");
         setOpen(false);
       }
     } catch (err: any) {
@@ -66,14 +52,12 @@ const TutorPage = () => {
       render: function (data: any) {
         return (
           <>
-            <Button
-              onClick={() => updateHandler(data?.id)}
-              style={{ marginRight: "7px" }}
-              type="primary"
-            >
-              {/* <DeleteOutlined /> */}
-              Edit
-            </Button>
+            <Link href={`/admin/tutor/${data?.id}`}>
+              <Button style={{ marginRight: "7px" }} type="primary">
+                {/* <DeleteOutlined /> */}
+                Edit
+              </Button>
+            </Link>
             <Button
               onClick={() => {
                 setOpen(true);
