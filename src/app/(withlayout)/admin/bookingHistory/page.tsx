@@ -1,0 +1,53 @@
+"use client";
+
+import { Table } from "antd";
+import dayjs from "dayjs";
+import {
+  useGetBookingHistoryQuery,
+  useGetSingleBookingQuery,
+} from "@/redux/api/bookingApi";
+
+const BookingHistoryPage = () => {
+  const { data: bookingHistory, isLoading } =
+    useGetBookingHistoryQuery(undefined);
+
+  console.log(bookingHistory);
+
+  const columns = [
+    {
+      title: "Available Service ID",
+      dataIndex: "availableServiceId",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+    },
+    {
+      title: "Customer Mail",
+      dataIndex: "user",
+      render: function (data: any) {
+        return <>{data?.email}</>;
+      },
+    },
+    {
+      title: "Historied Since",
+      dataIndex: "createdAt",
+      render: function (data: any) {
+        return data && dayjs(data).format("MMM D, YYYY hh:mm A");
+      },
+    },
+  ];
+
+  return (
+    <div>
+      <Table
+        loading={isLoading}
+        columns={columns}
+        dataSource={bookingHistory}
+        pagination={false}
+      />
+    </div>
+  );
+};
+
+export default BookingHistoryPage;

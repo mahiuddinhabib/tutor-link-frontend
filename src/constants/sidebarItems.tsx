@@ -106,9 +106,9 @@ export const sidebarItems = (role: string) => {
         },
         {
           label: (
-            <Link href={`/${role}/bookingHistories`}>Booking Histories</Link>
+            <Link href={`/${role}/bookingHistory`}>Booking Histories</Link>
           ),
-          key: `/${role}/bookingHistories`,
+          key: `/${role}/bookingHistory`,
         },
       ],
     },
@@ -133,23 +133,19 @@ export const sidebarItems = (role: string) => {
     ...defaultSidebarItems,
     // ...commonAdminSidebarItems,
     {
-      label: <Link href={`/${role}/admin`}>Manage Admin</Link>,
+      label: "Manage Admin",
       icon: <TableOutlined />,
-      key: `/${role}/admin`,
-    },
-    {
-      label: <Link href={`/${role}/user`}>Manage User</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/user`,
-    },
-    {
-      label: "Management",
-      key: "management",
-      icon: <AppstoreOutlined />,
+      key: "manage-admin",
       children: [
         {
-          label: <Link href={`/${role}/department`}>Department</Link>,
-          key: `/${role}/department`,
+          label: <Link href={`/${role}/admin`}>Admins</Link>,
+          icon: <TableOutlined />,
+          key: `/${role}/admin`,
+        },
+        {
+          label: <Link href={`/${role}/permission`}>Manage Permission</Link>,
+          icon: <TableOutlined />,
+          key: `/${role}/permission`,
         },
       ],
     },
