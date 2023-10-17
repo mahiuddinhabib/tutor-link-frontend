@@ -29,11 +29,11 @@ if (!!debouncedTerm) {
   query["searchTerm"] = debouncedTerm;
 }
  */
-  // const { data, isLoading } = useServicesQuery({ ...query });
+  const { data, isLoading } = useServicesQuery({});
   // const { data, isLoading } = useSingleServiceQuery("feb8b534-cd0e-4443-a6da-249b2dc9ec94");
   
 
-  // console.log(data);
+  console.log(data);
 
   return (
     <div>

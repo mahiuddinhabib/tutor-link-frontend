@@ -17,8 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, message } from "antd";
 import React from "react";
 
-const CreateServicePage = ({ params }: { params: { serviceId: string } }) => {
-  const serviceId = params.serviceId;
+const CreateServicePage = () => {
 
   const { data: users, isLoading: isUserLoading } = useGetUsersQuery(undefined);
   const {data: subjects, isLoading: isSubjectLoading} = useGetSubjectsQuery(undefined)

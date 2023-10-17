@@ -28,8 +28,8 @@ export const sidebarItems = (role: string) => {
       ],
     },
   ];
-  
-/* 
+
+  /* 
   const commonAdminSidebarItems: MenuProps["items"] = [
     {
       label: <Link href={`/${role}/manage-student`}>Manage Students</Link>,
@@ -80,6 +80,14 @@ export const sidebarItems = (role: string) => {
             <Link href={`/${role}/availableService`}>Available Services</Link>
           ),
           key: `/${role}/availableService`,
+        },
+        {
+          label: (
+            <Link href={`/${role}/availableService/create`}>
+              Create New Available Service
+            </Link>
+          ),
+          key: `/${role}/availableService/create`,
         },
       ],
     },

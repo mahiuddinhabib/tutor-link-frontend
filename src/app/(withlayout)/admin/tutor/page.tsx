@@ -33,13 +33,14 @@ const TutorPage = () => {
   const deleteHandler = async (id: string) => {
     message.loading("Deleting.....", 0.8);
     try {
-      const res = await deleteUser(id);
+      const res = await deleteUser(id).unwrap();
       console.log(res);
-      if ((res as any).data) {
+      if (res?.id) {
         message.success("Tutor Deleted");
         setOpen(false);
       } else {
-        message.error("Delete failed");
+        message.error("Tutor has active/pending service");
+        setOpen(false);
       }
     } catch (err: any) {
       //   console.error(err.message);
@@ -76,7 +77,7 @@ const TutorPage = () => {
             <Button
               onClick={() => {
                 setOpen(true);
-                setTutorId(data);
+                setTutorId(data?.id);
               }}
               type="primary"
               danger
