@@ -34,6 +34,15 @@ export const serviceApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.service],
     }),
 
+    // get all ac semesters endpoint
+    servicesBySubject: build.query({
+      query: (id: string | string[] | undefined) => ({
+        url: `${SERVICE_URL}/${id}/subject`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.service],
+    }),
+
     // get single ac semester endpoint
     singleService: build.query({
       query: (id: string | string[] | undefined) => ({
@@ -70,4 +79,5 @@ export const {
   useSingleServiceQuery, // get single hook
   useUpdateServiceMutation, // update hook,
   useDeleteServiceMutation, // delete hook
+  useServicesBySubjectQuery,
 } = serviceApi;

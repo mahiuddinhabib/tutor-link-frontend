@@ -6,7 +6,7 @@ import ClickableCard from "../ui/ClickableCard";
 const AllServices = () => {
   const { data, isLoading } = useServicesQuery({});
   return (
-    <Row gutter={[30, 30]} style={{ margin: "0px 10%" }}>
+    <Row gutter={[30, 30]} style={{ margin: "50px 10%" }}>
       {data?.services?.map((service) => (
         <Col
           span={8}
