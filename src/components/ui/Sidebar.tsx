@@ -41,7 +41,7 @@ const SideBar = () => {
           padding: "10px 0px",
         }}
       >
-        UMS
+        Tutor Link
       </div>
       <Menu
         theme="dark"

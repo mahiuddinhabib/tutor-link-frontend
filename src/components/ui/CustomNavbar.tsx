@@ -1,26 +1,27 @@
-import React, { useState } from "react";
-import { Layout, Button, Drawer, Menu, Avatar } from "antd";
-// import LeftMenu from "./LeftMenu";
-// import RightMenu from "./RightMenu";
-import {
-  MenuOutlined,
-  UserOutlined,
-  CodeOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { Layout, Button, Menu, Avatar } from "antd";
+import { UserOutlined, LogoutOutlined, LoginOutlined } from "@ant-design/icons";
 import Link from "next/link";
-import { removeUserInfo } from "@/services/auth.service";
+import {
+  getUserInfo,
+  isLoggedIn,
+  removeUserInfo,
+} from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
-// import { useLocation } from "react-router-dom";
 
 const CustomNavbar = () => {
-    const router = useRouter();
+  const router = useRouter();
+  const userLoggedIn = isLoggedIn();
 
   const logOut = () => {
     removeUserInfo(authKey);
     router.push("/login");
   };
+
+  const logIn = () => {
+    router.push("/login");
+  };
+
 
   return (
     <nav className="navbar">
@@ -33,37 +34,25 @@ const CustomNavbar = () => {
           }}
         >
           <div className="logo">
-            <h3 className="brand-font">Brand Here</h3>
+            <h3 className="brand-font" style={{color: "black"}}>
+              <Link href={"/"} style={{color: "black"}}>Tutor Link</Link>
+            </h3>
           </div>
           <div className="navbar-menu">
             <div className="leftMenu">
-              {/* <LeftMenu mode={"horizontal"} /> */}
               <Menu
                 mode="horizontal"
                 items={[
                   {
-                    label: <Link href={"/profile"}>Dashboard</Link>,
-                    key: "dashboard",
-                  },
-                  {
-                    label: <Link href={"/profile"}>Bookings</Link>,
+                    label: <Link href={`/profile`}>Profile</Link>,
                     key: "booking",
                   },
                   {
-                    label: <Link href={"/profile"}>History</Link>,
-                    key: "history",
-                  },
-                  {
-                    label: <Link href={"/profile"}>History</Link>,
+                    label: <Link href={`/`}>History</Link>,
                     key: "history",
                   },
                 ]}
-              >
-                {/* <Menu.Item key="explore">Explore</Menu.Item>
-                <Menu.Item key="features">Features</Menu.Item>
-                <Menu.Item key="about">About Us</Menu.Item>
-                <Menu.Item key="contact">Contact Us</Menu.Item> */}
-              </Menu>
+              ></Menu>
             </div>
             <div className="rightMenu">
               <Menu
@@ -76,7 +65,15 @@ const CustomNavbar = () => {
                       {
                         label: (
                           <>
-                            <LogoutOutlined /> Logout
+                            {userLoggedIn ? (
+                              <Button onClick={logOut} type="text" danger>
+                                <LogoutOutlined /> Logout
+                              </Button>
+                            ) : (
+                              <Button onClick={logIn} type="text">
+                                <LoginOutlined /> Login
+                              </Button>
+                            )}
                           </>
                         ),
                         key: "logout",
@@ -84,9 +81,7 @@ const CustomNavbar = () => {
                     ],
                   },
                 ]}
-              >
-
-              </Menu>
+              ></Menu>
             </div>
           </div>
         </Layout.Header>

@@ -8,7 +8,7 @@ export const subjectApi = baseApi.injectEndpoints({
     // create ac semester endpoint
     addSubject: build.mutation({
       query: (data) => ({
-        url: SUBJECT_URL,
+        url: `${SUBJECT_URL}/create-subject`,
         method: "POST",
         data,
       }),

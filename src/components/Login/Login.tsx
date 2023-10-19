@@ -10,6 +10,7 @@ import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas/login";
+import Link from "next/link";
 
 type FormValues = {
   email: string;
@@ -28,7 +29,7 @@ const LoginPage = () => {
       const res = await userLogin({ ...data }).unwrap();
       // console.log(res);
       if (res?.accessToken) {
-        // router.push("/profile");
+        router.push("/");
         message.success("Login successful!");
       }
       storeUserInfo({ accessToken: res?.accessToken });
@@ -85,6 +86,9 @@ const LoginPage = () => {
               Login
             </Button>
           </Form>
+          <p>
+            Don not have account yet? <Link href={'/register'}>Register here</Link>
+          </p>
         </div>
       </Col>
     </Row>

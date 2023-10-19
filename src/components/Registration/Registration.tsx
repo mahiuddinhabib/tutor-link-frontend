@@ -10,6 +10,7 @@ import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "@/schemas/registration";
+import Link from "next/link";
 
 type FormValues = {
   name: string;
@@ -35,8 +36,8 @@ const RegistrationPage = () => {
         profileImg: "",
       });
       console.log(res);
-        message.success("Registration successful!");
-          router.push("/login");
+      message.success("Registration successful!");
+      router.push("/login");
     } catch (err: any) {
       console.error(err.message);
     }
@@ -129,6 +130,9 @@ const RegistrationPage = () => {
               Register
             </Button>
           </Form>
+          <p>
+            Already have account yet? <Link href={"/login"}>Login here</Link>
+          </p>
         </div>
       </Col>
     </Row>
