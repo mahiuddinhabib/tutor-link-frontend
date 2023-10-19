@@ -1,7 +1,12 @@
 "use client";
 
-// import Header from "@/components/ui/Header";
-import { useServicesQuery, useSingleServiceQuery } from "@/redux/api/serviceApi";
+import AllServices from "@/components/Services/AllServices";
+import CustomNavbar from "@/components/ui/CustomNavbar";
+import Header from "@/components/ui/Header";
+import {
+  useServicesQuery,
+  useSingleServiceQuery,
+} from "@/redux/api/serviceApi";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 
@@ -29,16 +34,17 @@ if (!!debouncedTerm) {
   query["searchTerm"] = debouncedTerm;
 }
  */
-  const { data, isLoading } = useServicesQuery({});
+  // const { data, isLoading } = useServicesQuery({});
   // const { data, isLoading } = useSingleServiceQuery("feb8b534-cd0e-4443-a6da-249b2dc9ec94");
-  
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div>
       {/* <Header/> */}
+      <CustomNavbar />
       <h1>This is the HOME page</h1>
+      <AllServices />
     </div>
   );
 };

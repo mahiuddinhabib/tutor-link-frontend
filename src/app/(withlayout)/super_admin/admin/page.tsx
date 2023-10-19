@@ -6,21 +6,21 @@ import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
 import { useState } from "react";
 
-const CustomerPage = () => {
+const AdminPage = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [customerId, setCustomerId] = useState<string>("");
+  const [adminId, setAdminId] = useState<string>("");
   const { data: users, isLoading } = useGetUsersQuery(undefined);
   // console.log(users);
 
   const [deleteUser] = useDeleteUserMutation();
 
-  const customers = users?.filter((b: any) => b.role === "customer");
-  
+  const admins = users?.filter((b: any) => b.role === "admin");
+
   const deleteHandler = async (id: string) => {
-    message.loading("Deleting.....", 0.8);
+    message.loading("Deleting.....", 0.5);
     try {
       const res = await deleteUser(id);
-        // console.log(res);
+      // console.log(res);
       if (res) {
         message.success("User Deleted");
         setOpen(false);
@@ -31,7 +31,7 @@ const CustomerPage = () => {
     }
   };
 
-  // console.log(customers);
+  // console.log(admins);
 
   const columns = [
     {
@@ -51,7 +51,7 @@ const CustomerPage = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/customer/${data?.id}`}>
+            <Link href={`/super_admin/admin/${data?.id}`}>
               <Button style={{ marginRight: "7px" }} type="primary">
                 {/* <DeleteOutlined /> */}
                 Edit
@@ -60,7 +60,7 @@ const CustomerPage = () => {
             <Button
               onClick={() => {
                 setOpen(true);
-                setCustomerId(data?.id);
+                setAdminId(data?.id);
               }}
               type="primary"
               danger
@@ -79,19 +79,19 @@ const CustomerPage = () => {
       <Table
         loading={isLoading}
         columns={columns}
-        dataSource={customers}
+        dataSource={admins}
         pagination={false}
       />
       <CustomModal
-        title="Remove Customer"
+        title="Remove Admin"
         isOpen={open}
         closeModal={() => setOpen(false)}
-        handleOk={() => deleteHandler(customerId)}
+        handleOk={() => deleteHandler(adminId)}
       >
-        <p className="my-5">Do you want to remove this customer?</p>
+        <p className="my-5">Do you want to remove this admin?</p>
       </CustomModal>
     </div>
   );
 };
 
-export default CustomerPage;
+export default AdminPage;
