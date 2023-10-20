@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tutoring Services Platform
 
-## Getting Started
+## Live site: https://tutor-link.vercel.app/
 
-First, run the development server:
+## Key Features
+This document outlines the key features of the tutoring services platform, including user-facing features, admin-facing features, and super admin-facing features.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## User-Facing Features:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Registration and Login:
+- Users should be able to register with a valid email address and password.
+- Implement email verification for registration.
+- Provide a secure login process with proper authentication.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Profile Management:
+- Users can create and manage their profiles, including personal information, preferences, and educational background.
+- Allow users to view and edit their profiles easily.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Service Search and Add to Cart:
+- Users can browse available tuition services.
+- Implement a search feature allowing users to search tutoring services by subject, location, and tutor's expertise (title, subject).
+- Users should be able to filter services by price range and other relevant criteria (minPrice, maxPrice, subject).
+- Users should be able to view tutor profiles and add tutoring services to their cart for easy booking.
 
-## Learn More
+### Booking and Scheduling:
+- Develop a booking system that enables users to select tutoring dates and times.
+- Ensure a smooth and user-friendly booking process with clear confirmation.
+- Users should be able to track the status of their bookings.
 
-To learn more about Next.js, take a look at the following resources:
+### Review and Rating System:
+- Implement a system for users to leave reviews and ratings for tutors and their services.
+- Display these reviews and ratings on the home page.
+- Display these reviews and ratings on tutor profiles.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Notifications (Optional):
+- Provide a notifications center where users receive booking confirmations, reminders, and updates related to tutoring services.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Service History:
+- Develop a user dashboard to view booking history and check booking statuses for tutoring sessions.
+- Allow users to cancel bookings when necessary.
 
-## Deploy on Vercel
+### Feedback Forms:
+- Design feedback forms for users to submit comments and suggestions about the tutoring sessions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### User Dashboard:
+- Create a dashboard that provides an overview of tutoring session history and statuses.
+- Include options for canceling tutoring sessions (Dashboard can have two parts: requested services that haven't started yet and running tuition services).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Admin-Facing Features:
+
+### Admin Dashboard:
+- Develop a central dashboard for administrators to monitor and manage website activities related to tutoring services.
+
+### User Management:
+- Create a user management system for administrators to add, edit, and manage user accounts.
+- Implement role-based permissions for admin roles related to tutoring services.
+
+### Tutor/Service Management:
+- Design an interface for adding, editing, and removing tutor profiles and their service listings for tutoring.
+- Include options for pricing, descriptions, and availability of tutoring services.
+
+### Booking Management:
+- Implement a booking management system for administrators to view and manage booking requests for tutoring sessions.
+- Allow admins to accept, reject, and adjust tutoring schedules.
+
+### Content Management:
+- Create a content management system for administrators to control website content related to tutoring, including blog posts and FAQs.
+
+### Profile Management:
+- Allow admins to manage their profiles and access permissions.
+
+## Super Admin-Facing Features:
+
+### Admin Management:
+- Super admins can add new admin users to the system.
+- Provide options for managing admin roles.
+
+### Profile Management:
+- Create a profile management system for super admins to update their personal information.
+
+By implementing these functional requirements, the tutoring services platform will provide a comprehensive and user-friendly experience for both users and administrators.
