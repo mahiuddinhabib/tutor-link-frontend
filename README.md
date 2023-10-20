@@ -1,4 +1,4 @@
-# Tutoring Services Platform
+# Tutor Link: A Tutoring Services Platform
 
 ## Live site: https://tutor-link.vercel.app/
 
