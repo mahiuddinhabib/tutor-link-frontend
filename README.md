@@ -1,4 +1,4 @@
-# Tutoring Services Platform
+# Tutor Link: A Tutoring Services Platform
 
 ## Live site: https://tutor-link.vercel.app/
 
@@ -32,9 +32,6 @@ This document outlines the key features of the tutoring services platform, inclu
 - Display these reviews and ratings on the home page.
 - Display these reviews and ratings on tutor profiles.
 
-### Notifications (Optional):
-- Provide a notifications center where users receive booking confirmations, reminders, and updates related to tutoring services.
-
 ### Service History:
 - Develop a user dashboard to view booking history and check booking statuses for tutoring sessions.
 - Allow users to cancel bookings when necessary.
@@ -44,7 +41,7 @@ This document outlines the key features of the tutoring services platform, inclu
 
 ### User Dashboard:
 - Create a dashboard that provides an overview of tutoring session history and statuses.
-- Include options for canceling tutoring sessions (Dashboard can have two parts: requested services that haven't started yet and running tuition services).
+- Include options for canceling tutoring sessions.
 
 ## Admin-Facing Features:
 
