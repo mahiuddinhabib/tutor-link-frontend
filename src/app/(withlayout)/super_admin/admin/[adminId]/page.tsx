@@ -40,7 +40,7 @@ const UpdateAdminPage = ({ params }: { params: { adminId: string } }) => {
   return (
     <div>
       <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Update You Profile
+        Update This Profile
       </h1>
 
       <div style={{ margin: "auto", width: "50%" }}>

@@ -38,7 +38,7 @@ const UpdateAdminProfile = ({ params }: any) => {
 
   return (
     <div>
-      <h1>Update You Profile</h1>
+      <h1>Update Your Profile</h1>
 
       <div>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>

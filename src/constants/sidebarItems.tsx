@@ -118,11 +118,11 @@ export const sidebarItems = (role: string) => {
       icon: <TableOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/faq`}>Bookings</Link>,
+          label: <Link href={`/${role}/faq`}>FAQs</Link>,
           key: `/${role}/faq`,
         },
         {
-          label: <Link href={`/${role}/blog`}>Booking Requests</Link>,
+          label: <Link href={`/${role}/blog`}>Blogs</Link>,
           key: `/${role}/blog`,
         },
       ],
