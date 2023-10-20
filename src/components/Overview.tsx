@@ -11,17 +11,15 @@ const Overview = () => {
           <Image src={commonCardImg} width={500} alt="login image" />
         </Col>
         <Col sm={12} md={8} lg={8}>
-          <h2 style={{fontSize:"35px", marginBottom:"10px"}}>Who We Are</h2>
-          <p style={{fontSize:"20px", textAlign:"justify"}}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
-            laboriosam facere tempora temporibus natus odit possimus sequi
-            voluptates voluptatibus. Magni nostrum autem vitae debitis soluta
-            adipisci voluptas quidem saepe, officiis commodi a laborum, error
-            fugit incidunt quasi, exercitationem aut velit assumenda nesciunt
-            quo. Impedit eum voluptates commodi doloremque expedita recusandae
-            molestias magnam nisi illum omnis ratione delectus atque explicabo
-            minima eligendi dolor, quasi velit officiis placeat voluptas
-            accusantium. Eum quae necessitatibus eius quas.
+          <h2 style={{ fontSize: "35px", marginBottom: "10px" }}>Who We Are</h2>
+          <p style={{ fontSize: "20px", textAlign: "justify" }}>
+            Welcome to Tutor Link, your one-stop platform for seamless and
+            effective tutoring services. Whether you are a student seeking
+            academic support or a dedicated tutor looking to share your
+            expertise, our platform offers a comprehensive range of features to
+            make your educational journey a breeze. expertise, our platform
+            offers a comprehensive range of features to make your educational
+            journey a breeze.
           </p>
         </Col>
       </Row>

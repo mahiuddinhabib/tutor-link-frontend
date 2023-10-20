@@ -1,9 +1,6 @@
 "use client";
 import { Button, message } from "antd";
 import { useState } from "react";
-import {
-  useDeleteAcademicFacultyMutation,
-} from "@/redux/api/academic/facultyApi";
 import { useDeleteServiceMutation, useServicesQuery } from "@/redux/api/serviceApi";
 import CustomTable from "@/components/ui/CustomTable";
 import Link from "next/link";
