@@ -119,3 +119,29 @@
 }
 
 /* Navbar End */
+
+@media (max-width: 767px) {
+  .desktopMenu {
+    display: none;
+  }
+  .mobileMenuIcon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (min-width: 767px) {
+  .mobileMenuIcon {
+    display: none;
+  }
+  .desktopMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .desktopMenu Menu {
+    display: flex;
+    justify-content: center;
+  }
+}

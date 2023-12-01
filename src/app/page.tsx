@@ -6,15 +6,17 @@ import AllServices from "@/components/Services/AllServices";
 import ServicesByCategory from "@/components/Services/ServicesByCategory";
 import CustomFooter from "@/components/ui/CustomFooter";
 import CustomNavbar from "@/components/ui/CustomNavbar";
+import Navbar from "@/components/ui/Navbar";
 
 const HomePage = () => {
 
   return (
     <div>
-      <CustomNavbar />
+      {/* <CustomNavbar /> */}
+      <Navbar/>
       <AllServices />
-      <ServicesByCategory />
-      <Overview />
+      {/* <ServicesByCategory /> */}
+      {/* <Overview /> */}
       <ReviewCarousel />
       <CustomFooter />
     </div>
