@@ -11,15 +11,17 @@ import Navbar from "@/components/ui/Navbar";
 const HomePage = () => {
 
   return (
-    <div>
+    <>
       {/* <CustomNavbar /> */}
-      <Navbar/>
-      <AllServices />
-      {/* <ServicesByCategory /> */}
-      {/* <Overview /> */}
-      <ReviewCarousel />
-      <CustomFooter />
-    </div>
+      <Navbar />
+      <div className="container">
+        <AllServices />
+        {/* <ServicesByCategory /> */}
+        {/* <Overview /> */}
+        <ReviewCarousel />
+      </div>
+        <CustomFooter />
+    </>
   );
 };
 

@@ -12,7 +12,8 @@ const ClickableCard = ({ service }: { service: any }) => {
     <Link href={`/service/${service?.id}`}>
       <Card
         style={{
-          minHeight: "350px",
+          minHeight: "400px",
+          // width:"350px",
           boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.3)",
         }}
         cover={

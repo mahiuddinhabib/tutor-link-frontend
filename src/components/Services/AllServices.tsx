@@ -6,14 +6,17 @@ import ClickableCard from "../ui/ClickableCard";
 const AllServices = () => {
   const { data, isLoading } = useServicesQuery({});
   return (
-    <div style={{ margin: "30px 10%" }}>
+    <div>
       <h1 style={{ textAlign: "center", marginBottom: "50px" }}>Services</h1>
-      <Row gutter={[30, 30]}>
+      <Row gutter={[25, 25]} justify="center">
         {data?.services?.map((service) => (
           <Col
-            span={8}
+            // span={8}
+            xs={24}
+            md={12}
+            lg={7}
             key={service?.id}
-            style={{ justifyContent: "center", alignItems: "center" }}
+            // style={{display:"flex", justifyContent: "center", alignItems: "center"}}
           >
             <ClickableCard key={service?.id} service={service} />
           </Col>

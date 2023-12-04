@@ -1,8 +1,13 @@
 import { Avatar, Button, Drawer, Dropdown, Menu, MenuProps, Space } from "antd";
-import { MenuOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { removeUserInfo } from "@/services/auth.service";
+import { isLoggedIn, removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 
 const item: MenuProps["items"] = [
@@ -53,6 +58,7 @@ const item: MenuProps["items"] = [
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
+  const userLoggedIn = isLoggedIn();
 
   const logOut = () => {
     removeUserInfo(authKey);
@@ -63,9 +69,17 @@ const Navbar = () => {
     {
       key: "0",
       label: (
-        <Button onClick={logOut} type="text" danger>
-          Logout
-        </Button>
+        <>
+          {userLoggedIn ? (
+            <Button onClick={logOut} type="text" danger>
+              <LogoutOutlined /> Logout
+            </Button>
+          ) : (
+            <Button onClick={() => router.push("/login")} type="text">
+              <LoginOutlined /> Login
+            </Button>
+          )}
+        </>
       ),
     },
   ];
@@ -99,7 +113,7 @@ const Navbar = () => {
             fontSize: 18,
             paddingTop: 10,
             paddingBottom: 10,
-            minWidth: "80%",
+            minWidth: "75%",
             borderBottom: "none",
             backgroundColor: "inherit",
           }}
