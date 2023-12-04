@@ -13,15 +13,21 @@ const ClickableCard = ({ service }: { service: any }) => {
       <Card
         style={{
           minHeight: "400px",
-          // width:"350px",
+          maxWidth: 500,
           boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.3)",
+          margin: "0 auto",
         }}
         cover={
           <Image
-            width={300}
-            style={{ height: "auto" }}
             src={CardImg}
-            alt="card image here"
+            width={0}
+            height={0}
+            sizes="100vw"
+            alt="card image"
+            style={{ width: "100%", height: "auto" }}
+            // width={300}
+            // style={{ height: "auto" }}
+            // alt="card image here"
           />
         }
       >

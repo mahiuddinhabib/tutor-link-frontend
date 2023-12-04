@@ -8,25 +8,31 @@ import Link from "next/link";
 const ServicesByCategory = () => {
   const { data: subjects, isLoading } = useGetSubjectsQuery(undefined);
   return (
-    <div style={{ margin: "100px 10%" }}>
-      <h1 style={{ textAlign: "center", marginBottom:"50px" }}>Tuitions By Subjects</h1>
-      <Row gutter={[30, 30]}>
+    <div>
+      <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
+        Tuitions By Subjects
+      </h1>
+      <Row gutter={[25, 25]} justify="center">
         {subjects?.map((subject: any) => (
           <Col
-            span={6}
+            xs={24}
+            md={8}
+            lg={6}
             key={subject?.id}
             style={{ justifyContent: "center", alignItems: "center" }}
           >
             <Link href={`/subject/${subject?.id}`}>
               <Card
                 style={{
-                  width: 300,
-                  height: 150,
+                  maxWidth: 500,
+                  // height: 150,
                   textAlign: "center",
+                  padding:"15px",
                   backgroundColor: "gray",
+                  margin: "0 auto",
                 }}
               >
-                <h2 style={{ marginTop: "35px" }}>{subject?.title}</h2>
+                <h2>{subject?.title}</h2>
               </Card>
             </Link>
           </Col>

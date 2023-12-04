@@ -16,8 +16,8 @@ const HomePage = () => {
       <Navbar />
       <div className="container">
         <AllServices />
-        {/* <ServicesByCategory /> */}
-        {/* <Overview /> */}
+        <ServicesByCategory />
+        <Overview />
         <ReviewCarousel />
       </div>
         <CustomFooter />

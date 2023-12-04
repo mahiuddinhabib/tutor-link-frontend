@@ -16,7 +16,6 @@ const AllServices = () => {
             md={12}
             lg={7}
             key={service?.id}
-            // style={{display:"flex", justifyContent: "center", alignItems: "center"}}
           >
             <ClickableCard key={service?.id} service={service} />
           </Col>

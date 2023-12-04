@@ -4,22 +4,54 @@ import commonCardImg from "@/assets/common-card-img.jpeg";
 
 const Overview = () => {
   return (
-    <div style={{ margin: "100px 10%" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "50px" }}>Overview</h1>
-      <Row justify="space-evenly" align="middle">
-        <Col sm={12} md={16} lg={10}>
-          <Image src={commonCardImg} width={500} alt="login image" />
+    <div style={{marginTop:"60px"}}>
+      <Row gutter={{md:50}} justify="center">
+        <h2
+          className="mobileMenuIcon"
+          style={{ fontSize: "35px", marginBottom: "25px" }}
+        >
+          Who We Are
+        </h2>
+        <Col xs={24} sm={24} md={12} lg={10}>
+          <Image
+            src={commonCardImg}
+            width={0}
+            height={0}
+            // sizes="100vw"
+            alt="card image"
+            style={{ width: "100%", height: "auto" }}
+          />
         </Col>
-        <Col sm={12} md={8} lg={8}>
-          <h2 style={{ fontSize: "35px", marginBottom: "10px" }}>Who We Are</h2>
-          <p style={{ fontSize: "20px", textAlign: "justify" }}>
-            Welcome to Tutor Link, your one-stop platform for seamless and
-            effective tutoring services. Whether you are a student seeking
-            academic support or a dedicated tutor looking to share your
-            expertise, our platform offers a comprehensive range of features to
-            make your educational journey a breeze. expertise, our platform
-            offers a comprehensive range of features to make your educational
-            journey a breeze.
+        <Col
+          xs={24}
+          sm={24}
+          md={12}
+          lg={8}
+          style={
+            {
+              // display: "flex",
+              // flexDirection: "column",
+              // justifyContent: "flex-start",
+            }
+          }
+        >
+          <h2
+            className="desktopMenu"
+            style={{ fontSize: "35px", marginBottom: "20px" }}
+          >
+            Who We Are
+          </h2>
+          <p
+            style={{
+              fontSize: "20px",
+              textAlign: "justify",
+              marginTop:"15px"
+            }}
+          >
+            Welcome to Tutor Link! We believe in the transformative power of
+            education. We are committed to connecting students with exceptional
+            tutors, facilitating effective learning experiences, and fostering a
+            vibrant community of learners.
           </p>
         </Col>
       </Row>
