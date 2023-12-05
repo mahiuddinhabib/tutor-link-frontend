@@ -11,10 +11,12 @@ const ClickableCard = ({ service }: { service: any }) => {
   return (
     <Link href={`/service/${service?.id}`}>
       <Card
+        hoverable
         style={{
           minHeight: "400px",
           maxWidth: 500,
-          boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.3)",
+          // border:"1px solid gray",
+          // boxShadow: "0px 0px 1px rgba(0, 0, 0, 0.3)",
           margin: "0 auto",
         }}
         cover={

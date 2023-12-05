@@ -16,18 +16,20 @@ const HomePage = () => {
   const { token } = useToken();
   return (
     <>
-      <Navbar />
-      <Banner />
+        <Navbar />
+      <div className="containerLg">
+        <Banner />
+      </div>
       <div className="container">
-        <div style={{ marginTop: token.sizeXXL, backgroundColor:"red" }} />
+        <div style={{ marginTop: token.sizeXXL}} />
         <AllServices />
+      </div>
         <div style={{ marginTop: token.sizeXXL }} />
         <ServicesByCategory />
         <div style={{ marginTop: token.sizeXXL }} />
         <Overview />
         <div style={{ marginTop: token.sizeXXL }} />
         <ReviewCarousel />
-      </div>
       <div style={{ marginTop: token.sizeXXL }} />
       <CustomFooter />
     </>

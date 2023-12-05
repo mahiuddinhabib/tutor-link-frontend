@@ -4,7 +4,7 @@ import tutor from "@/assets/tutor.png";
 
 const Overview = () => {
   return (
-    <div>
+    <div className="container">
       <Row gutter={{ md: 50 }} justify="center">
         <h2
           className="mobileMenuIcon"

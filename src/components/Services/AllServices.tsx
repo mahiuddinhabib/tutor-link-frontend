@@ -1,13 +1,25 @@
 import { useServicesQuery } from "@/redux/api/serviceApi";
-import { Col, Row } from "antd";
+import { Col, Row, theme } from "antd";
 import React from "react";
 import ClickableCard from "../ui/ClickableCard";
 
+const { useToken } = theme;
+
 const AllServices = () => {
+  const { token } = useToken();
   const { data, isLoading } = useServicesQuery({});
   return (
     <div>
-      <h1 style={{ textAlign: "center", marginBottom: "50px" }}>Services</h1>
+      <h1
+        style={{
+          textAlign: "center",
+          marginBottom: "30px",
+          fontSize: token.fontSizeHeading2,
+          color: token.colorTextSecondary,
+        }}
+      >
+        Book Your One
+      </h1>
       <Row gutter={[25, 25]} justify="center">
         {data?.services?.map((service) => (
           <Col

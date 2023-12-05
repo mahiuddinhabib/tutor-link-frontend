@@ -3,15 +3,13 @@ import React from "react";
 import BannerImg from "@/assets/BannerImg.png";
 import VectorImg1 from "@/assets/vector1.png";
 import VectorImg2 from "@/assets/vector2.png";
-import MathBG from "@/assets/Mathematics.png";
-import BgVector from "@/assets/bg-vector.png";
 import { Button, Col, Row } from "antd";
 import Image from "next/image";
 
 const Banner = () => {
   return (
     <>
-      <Row style={{}}>
+      <Row style={{maxWidth:"1920px", margin:"0 auto"}}>
         <Col
           xs={24}
           md={12}
