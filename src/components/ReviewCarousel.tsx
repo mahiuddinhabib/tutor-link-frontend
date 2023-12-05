@@ -8,7 +8,7 @@ const ReviewCarousel = () => {
   const { data, isLoading } = useGetFeedbacksQuery(undefined);
   // console.log(data);
   return (
-    <div style={{ margin: "0px 10%" }}>
+    <div>
       <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
         Client Reviews
       </h1>

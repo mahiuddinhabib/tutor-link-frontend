@@ -1,20 +1,20 @@
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import Image from "next/image";
-import commonCardImg from "@/assets/common-card-img.jpeg";
+import tutor from "@/assets/tutor.png";
 
 const Overview = () => {
   return (
-    <div style={{marginTop:"60px"}}>
-      <Row gutter={{md:50}} justify="center">
+    <div>
+      <Row gutter={{ md: 50 }} justify="center">
         <h2
           className="mobileMenuIcon"
           style={{ fontSize: "35px", marginBottom: "25px" }}
         >
-          Who We Are
+          Want to Be a Tutor?
         </h2>
         <Col xs={24} sm={24} md={12} lg={10}>
           <Image
-            src={commonCardImg}
+            src={tutor}
             width={0}
             height={0}
             // sizes="100vw"
@@ -27,25 +27,20 @@ const Overview = () => {
           sm={24}
           md={12}
           lg={8}
-          style={
-            {
-              // display: "flex",
-              // flexDirection: "column",
-              // justifyContent: "flex-start",
-            }
-          }
+          className="joinDiv"
         >
           <h2
             className="desktopMenu"
             style={{ fontSize: "35px", marginBottom: "20px" }}
           >
-            Who We Are
+            Want to Be a Tutor?
           </h2>
           <p
             style={{
               fontSize: "20px",
               textAlign: "justify",
-              marginTop:"15px"
+              marginTop: "15px",
+              marginBottom: "15px",
             }}
           >
             Welcome to Tutor Link! We believe in the transformative power of
@@ -53,6 +48,9 @@ const Overview = () => {
             tutors, facilitating effective learning experiences, and fostering a
             vibrant community of learners.
           </p>
+          <Button size="large" type="primary" shape="round">
+            Join Our Team
+          </Button>
         </Col>
       </Row>
     </div>

@@ -23,8 +23,8 @@ const ClickableCard = ({ service }: { service: any }) => {
             width={0}
             height={0}
             sizes="100vw"
-            alt="card image"
             style={{ width: "100%", height: "auto" }}
+            alt="card image"
             // width={300}
             // style={{ height: "auto" }}
             // alt="card image here"

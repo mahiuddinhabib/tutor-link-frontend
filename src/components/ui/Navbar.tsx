@@ -1,4 +1,4 @@
-import { Avatar, Button, Drawer, Dropdown, Menu, MenuProps, Space } from "antd";
+import { Avatar, Button, Drawer, Dropdown, Menu, MenuProps, theme } from "antd";
 import {
   MenuOutlined,
   UserOutlined,
@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { isLoggedIn, removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
+
+const { useToken } = theme;
 
 const item: MenuProps["items"] = [
   {
@@ -56,6 +58,7 @@ const item: MenuProps["items"] = [
 ];
 
 const Navbar = () => {
+  const { token } = useToken();
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
   const userLoggedIn = isLoggedIn();
@@ -84,7 +87,7 @@ const Navbar = () => {
     },
   ];
   return (
-    <div style={{ height: 65, backgroundColor: "darkorange" }}>
+    <div style={{ height: 65, backgroundColor: token.colorBgBase }}>
       <div
         className="mobileMenuIcon"
         style={{
@@ -92,20 +95,20 @@ const Navbar = () => {
         }}
       >
         <MenuOutlined
-          style={{ color: "white", fontSize: 30, marginLeft: 10 }}
+          style={{ color: token.colorPrimaryActive, fontSize: 25, marginLeft: 15 }}
           onClick={() => setOpenMenu(true)}
         />
         <h3 style={{ display: "inline-block", fontSize: 30 }}>Tutor Link</h3>
         <Dropdown menu={{ items }}>
           <Avatar
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 15 }}
             size="large"
             icon={<UserOutlined />}
           />
         </Dropdown>
       </div>
       <div className="desktopMenu">
-        <h2 style={{ display: "inline-block", marginLeft: 10 }}>Tutor Link</h2>
+        <h2 style={{ display: "inline-block", marginLeft: 15 }}>Tutor Link</h2>
         <Menu
           mode="horizontal"
           items={item}
@@ -120,7 +123,7 @@ const Navbar = () => {
         />
         <Dropdown menu={{ items }}>
           <Avatar
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 15 }}
             size="large"
             icon={<UserOutlined />}
           />
@@ -129,6 +132,7 @@ const Navbar = () => {
       <Drawer
         open={openMenu}
         placement="left"
+        width={"70%"}
         closable={false}
         onClose={() => setOpenMenu(false)}
       >

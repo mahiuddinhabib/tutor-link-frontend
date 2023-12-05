@@ -3,7 +3,7 @@ const { Footer } = Layout;
 
 const CustomFooter = () => {
   return (
-    <Footer style={{ textAlign: "center", marginTop: "80px" }}>
+    <Footer style={{ textAlign: "center" }}>
       Tutor Link ©2023 Created by Bit Solutions
     </Footer>
   );
