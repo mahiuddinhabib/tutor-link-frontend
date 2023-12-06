@@ -9,7 +9,7 @@ const AllServices = () => {
   const { token } = useToken();
   const { data, isLoading } = useServicesQuery({});
   return (
-    <div>
+    <div className="container">
       <h1
         style={{
           textAlign: "center",

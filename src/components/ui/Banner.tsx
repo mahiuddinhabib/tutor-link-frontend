@@ -9,7 +9,7 @@ import Image from "next/image";
 const Banner = () => {
   return (
     <>
-      <Row style={{maxWidth:"1920px", margin:"0 auto"}}>
+      <Row>
         <Col
           xs={24}
           md={12}

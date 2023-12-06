@@ -13,8 +13,8 @@ const ServicesByCategory = () => {
   return (
     <div
       style={{
-        maxWidth: "1920px",
-        margin: "0 auto",
+        // maxWidth: "1920px",
+        // margin: "0 auto",
         padding: "50px 0",
         backgroundColor: token.colorPrimaryBgHover,
       }}

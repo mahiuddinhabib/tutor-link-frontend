@@ -15,24 +15,20 @@ const { useToken } = theme;
 const HomePage = () => {
   const { token } = useToken();
   return (
-    <>
-        <Navbar />
-      <div className="containerLg">
-        <Banner />
-      </div>
-      <div className="container">
-        <div style={{ marginTop: token.sizeXXL}} />
-        <AllServices />
-      </div>
-        <div style={{ marginTop: token.sizeXXL }} />
-        <ServicesByCategory />
-        <div style={{ marginTop: token.sizeXXL }} />
-        <Overview />
-        <div style={{ marginTop: token.sizeXXL }} />
-        <ReviewCarousel />
+    <div>
+      <Navbar />
+      <Banner />
+      <div style={{ marginTop: token.sizeXXL }} />
+      <AllServices />
+      <div style={{ marginTop: token.sizeXXL }} />
+      <ServicesByCategory />
+      <div style={{ marginTop: token.sizeXXL }} />
+      <Overview />
+      <div style={{ marginTop: token.sizeXXL }} />
+      <ReviewCarousel />
       <div style={{ marginTop: token.sizeXXL }} />
       <CustomFooter />
-    </>
+    </div>
   );
 };
 
