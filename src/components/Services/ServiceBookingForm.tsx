@@ -12,6 +12,7 @@ import {
   useUpdateProfileMutation,
 } from "@/redux/api/profileApi";
 import FormSelectField from "../Forms/FormSelectField";
+import { useAddBookingMutation } from "@/redux/api/bookingApi";
 
 const ServiceBookingForm = ({
   //   customerId,
@@ -28,6 +29,8 @@ const ServiceBookingForm = ({
   //   console.log(adminData);
   const [updateProfile] = useUpdateProfileMutation();
 
+  const [addBooking] = useAddBookingMutation();
+
   const scheduleOptions = availableServices?.map((service: any) => {
     return {
       label: service?.startTime,
@@ -37,13 +40,18 @@ const ServiceBookingForm = ({
   });
 
   const onSubmit = async (values: any) => {
-    console.log(values);
+    const { availableServiceId, ...userData } = values;
+    console.log(availableServiceId, userData);
+    
     try {
-      // const res = await updateProfile(values).unwrap();
-      //   console.log(res);
-      // if (res?.id) {
-      //   message.success("Profile Updated!");
-      // }
+      await updateProfile(userData).unwrap();
+      const res = await addBooking({
+        availableServiceId,
+      }).unwrap();
+      console.log(res);
+      if (res?.id) {
+        message.success("Profile Updated!");
+      }
     } catch (err: any) {
       message.error(err.message);
       // console.error(err.message);
@@ -146,13 +154,14 @@ const ServiceBookingForm = ({
                   ? availableServices[0]?.service?.tutor?.name
                   : "Tutor"}
               </p>
-              <p style={{ marginBottom: "7px" }}>Days: Sun to Thu</p>
+              <p style={{ marginBottom: "7px" }}>Days: Sun - Thu</p>
               <FormSelectField
                 name="availableServiceId"
+                placeholder="Select A Schedule"
                 options={scheduleOptions}
               />
             </div>
-            <div style={{display:"flex", justifyContent:"center"}}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
                 htmlType="submit"
                 type="primary"

@@ -9,55 +9,35 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { isLoggedIn, removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
+import BrandIcon from "@/assets/icon.png";
+import Image from "next/image";
+import { useGetSubjectsQuery } from "@/redux/api/subjectApi";
+import Link from "next/link";
 
 const { useToken } = theme;
 
-const item: MenuProps["items"] = [
-  {
-    label: "Dashboard",
-    key: "dashboard",
-  },
-  {
-    label: "Blogs",
-    key: "blogs",
-  },
-  {
-    label: "Something",
-    key: "something",
-    children: [
-      {
-        type: "group",
-        label: "Item 1",
-        children: [
-          {
-            label: "Option 1",
-            key: "setting:1",
-          },
-          {
-            label: "Option 2",
-            key: "setting:2",
-          },
-        ],
-      },
-      {
-        type: "group",
-        label: "Item 2",
-        children: [
-          {
-            label: "Option 3",
-            key: "setting:3",
-          },
-          {
-            label: "Option 4",
-            key: "setting:4",
-          },
-        ],
-      },
-    ],
-  },
-];
-
 const Navbar = () => {
+  const { data: subjects, isLoading } = useGetSubjectsQuery(undefined);
+  const item: MenuProps["items"] = [
+    {
+      label: <Link href={`/profile`}>Dashboard</Link>,
+      key: "dashboard",
+    },
+    {
+      label: "Tuitions",
+      key: "tuitions",
+      children: subjects?.map((subject: any) => {
+        return {
+          label: <Link href={`/subject/${subject?.id}`}>{subject?.title}</Link>,
+          key: subject?.id,
+        };
+      }),
+    },
+    {
+      label: "Blogs",
+      key: "blogs",
+    },
+  ];
   const { token } = useToken();
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
@@ -95,10 +75,33 @@ const Navbar = () => {
         }}
       >
         <MenuOutlined
-          style={{ color: token.colorPrimaryActive, fontSize: 25, marginLeft: 15 }}
+          style={{
+            color: "gray",
+            fontSize: 25,
+            marginLeft: 15,
+          }}
           onClick={() => setOpenMenu(true)}
         />
-        <h3 style={{ display: "inline-block", fontSize: 30 }}>Tutor Link</h3>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image src={BrandIcon} alt="BrandIcon" height={35} />
+          <h2
+            style={{
+              display: "inline-block",
+              marginLeft: 7,
+              fontSize: "1.5rem",
+              color: token.colorPrimary,
+              fontFamily: "Papyrus",
+            }}
+          >
+            Tutor Link
+          </h2>
+        </div>
         <Dropdown menu={{ items }}>
           <Avatar
             style={{ marginRight: 15 }}
@@ -108,7 +111,34 @@ const Navbar = () => {
         </Dropdown>
       </div>
       <div className="desktopMenu">
-        <h2 style={{ display: "inline-block", marginLeft: 15 }}>Tutor Link</h2>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginLeft: 15,
+          }}
+        >
+          <Image
+            src={BrandIcon}
+            alt="BrandIcon"
+            height={0}
+            width={0}
+            style={{ height: "35px", width: "auto" }}
+          />
+          <h2
+            style={{
+              display: "inline-block",
+              marginLeft: 7,
+              fontSize: "clamp(1rem, 2vw, 1.6rem)",
+              fontWeight: "bolder",
+              color: token.colorPrimary,
+              fontFamily: "Papyrus",
+            }}
+          >
+            Tutor Link
+          </h2>
+        </div>
         <Menu
           mode="horizontal"
           items={item}
@@ -123,7 +153,9 @@ const Navbar = () => {
         />
         <Dropdown menu={{ items }}>
           <Avatar
-            style={{ marginRight: 15 }}
+            style={{
+              marginRight: 15,
+            }}
             size="large"
             icon={<UserOutlined />}
           />
@@ -136,7 +168,7 @@ const Navbar = () => {
         closable={false}
         onClose={() => setOpenMenu(false)}
       >
-        <h2 style={{ textAlign: "center", marginBottom: 10 }}>Tutor Link</h2>
+        <h2 style={{ textAlign: "center", marginBottom: 10 }}>Home Menu</h2>
         <Menu
           mode="inline"
           items={item}

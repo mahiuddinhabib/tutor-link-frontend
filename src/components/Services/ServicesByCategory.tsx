@@ -4,6 +4,7 @@ import React from "react";
 import ClickableCard from "../ui/ClickableCard";
 import { useGetSubjectsQuery } from "@/redux/api/subjectApi";
 import Link from "next/link";
+import Bg1 from "@/assets/bg1.png";
 
 const { useToken } = theme;
 
@@ -13,8 +14,12 @@ const ServicesByCategory = () => {
   return (
     <div
       style={{
-        // maxWidth: "1920px",
-        // margin: "0 auto",
+        backgroundImage: `url(${Bg1.src})`,
+        // backgroundPositionX: "-30%",
+        // backgroundPositionY: "170%",
+        backgroundSize: "90%",
+        // backgroundRepeatY: "no-repeat",
+        // opacity:"50%",
         padding: "50px 0",
         backgroundColor: token.colorPrimaryBgHover,
       }}
@@ -24,7 +29,7 @@ const ServicesByCategory = () => {
           textAlign: "center",
           marginBottom: "50px",
           fontSize: token.fontSizeHeading2,
-          color:token.colorTextSecondary
+          color: token.colorTextSecondary,
         }}
       >
         Tuitions By Subjects

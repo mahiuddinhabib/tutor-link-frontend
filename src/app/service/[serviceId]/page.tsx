@@ -6,7 +6,12 @@ import commonCardImg from "@/assets/common-card-img.jpeg";
 import commonProfileImg from "@/assets/profile.png";
 import { useSingleServiceQuery } from "@/redux/api/serviceApi";
 import {
-  Affix,
+  SolutionOutlined,
+  CalendarOutlined,
+  SnippetsOutlined,
+  FieldTimeOutlined,
+} from "@ant-design/icons";
+import {
   Avatar,
   Button,
   Card,
@@ -21,7 +26,6 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import { useAddBookingMutation } from "@/redux/api/bookingApi";
-import CustomModal from "@/components/ui/CustomModal";
 import Navbar from "@/components/ui/Navbar";
 import CustomFooter from "@/components/ui/CustomFooter";
 import FormTextArea from "@/components/Forms/FormTextArea";
@@ -215,7 +219,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
           <Card
             style={{
               // minHeight: "400px",
-              maxWidth: 400,
+              // maxWidth: 400,
               // border:"1px solid gray",
               // boxShadow: "0px 0px 1px rgba(0, 0, 0, 0.3)",
               margin: `${token.sizeXL} auto `,
@@ -259,22 +263,30 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
               dataSource={[
                 {
                   desc: "4 days per week",
+                  icon: <CalendarOutlined />,
                 },
                 {
                   desc: "Predefined schedule",
+                  icon: <FieldTimeOutlined />,
                 },
                 {
                   desc: "Provide helpful materials",
+                  icon: <SnippetsOutlined />,
                 },
                 {
                   desc: "Special care for week students",
+                  icon: <SolutionOutlined />,
                 },
               ]}
               renderItem={(item) => (
                 <List.Item style={{ border: "none" }}>
                   <Avatar
-                    style={{ marginRight: "10px" }}
-                    src={<Image src={commonProfileImg} alt="tutor profile" />}
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      color: "black",
+                      marginRight: "10px",
+                    }}
+                    icon={item.icon}
                   />
                   {item.desc}
                 </List.Item>
