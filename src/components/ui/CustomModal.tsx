@@ -6,7 +6,8 @@ interface IModal {
   closeModal: () => void;
   title: string | ReactNode;
   children: ReactElement;
-  handleOk?: () => void;
+  // handleOk?: (values: any) => Promise<void> | () => void;
+  handleOk?: any;
   showCancelButton?: boolean;
   showOkButton?: boolean;
 }

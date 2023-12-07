@@ -16,6 +16,7 @@ import {
   Rate,
   Row,
   message,
+  theme,
 } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -28,6 +29,7 @@ import {
   useAddFeedbackMutation,
   useGetFeedbacksQuery,
 } from "@/redux/api/feedbackApi";
+import ServiceBookingForm from "@/components/Services/ServiceBookingForm";
 
 const text = `
   A dog is a type of domesticated animal.
@@ -36,10 +38,11 @@ const text = `
 `;
 
 const { Meta } = Card;
+const { useToken } = theme;
 
 const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
   const serviceId = params.serviceId;
-
+  const { token } = useToken();
   const [open, setOpen] = useState<boolean>(false);
   const [rating, setRating] = useState(0);
   const [availableServiceId, setAvailableServiceId] = useState<string>("");
@@ -96,7 +99,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
       const res = await addFeedback({
         ...values,
         rating,
-        serviceId
+        serviceId,
       }).unwrap();
       console.log(res);
     } catch (err: any) {
@@ -108,7 +111,11 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
   return (
     <>
       <Navbar />
-      <Row className="container" gutter={[15, 15]} style={{ margin: "0 auto" }}>
+      <Row
+        className="container"
+        gutter={[15, 15]}
+        style={{ margin: "0 auto", marginTop: token.sizeXL }}
+      >
         <Col xs={{ span: 24, order: 2 }} md={{ span: 15, order: 1 }}>
           <h3>
             {availableServices ? availableServices[0]?.service?.title : "Title"}
@@ -119,7 +126,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
             tempore. Lorem ipsum dolor sit amet.
           </p>
           <h3>Instructor</h3>
-          <Card style={{}} loading={isServiceLoading}>
+          <Card style={{ marginTop: token.sizeXL }} loading={isServiceLoading}>
             <Meta
               avatar={
                 <Avatar
@@ -135,34 +142,10 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
               description="BSc. in Bangla (BUET), MSc. in Rocketry (MIT)"
             />
           </Card>
-          <h3>What Will Be Covered</h3>
-          <List
-            bordered
-            dataSource={[
-              {
-                desc: "Ant Design Title 1",
-              },
-              {
-                desc: "Ant Design Title 2",
-              },
-              {
-                desc: "Ant Design Title 3",
-              },
-              {
-                desc: "Ant Design Title 4",
-              },
-            ]}
-            renderItem={(item) => (
-              <List.Item style={{ border: "none" }}>
-                <Avatar
-                  style={{ marginRight: "10px" }}
-                  src={<Image src={commonProfileImg} alt="tutor profile" />}
-                />
-                {item.desc}
-              </List.Item>
-            )}
-          />
-          <h3>Frequently Asked Questions</h3>
+
+          <h3 style={{ marginTop: token.sizeXL }}>
+            Frequently Asked Questions
+          </h3>
           <Collapse
             accordion
             items={[
@@ -184,7 +167,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
             ]}
           />
 
-          <Card style={{ textAlign: "center" }}>
+          <Card style={{ textAlign: "center", marginTop: token.sizeXL }}>
             <h3>Give a Feedback</h3>
             <Rate
               tooltips={["terrible", "bad", "normal", "good", "wonderful"]}
@@ -206,36 +189,36 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
               </Form>
             </div>
           </Card>
-          <Card>
-            <List
-              itemLayout="horizontal"
-              dataSource={feedbackData}
-              renderItem={(item: any, index) => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={
-                      <Avatar
-                        src={
-                          <Image src={commonProfileImg} alt="tutor profile" />
-                        }
-                      />
-                    }
-                    title={item?.user?.name}
-                    description={item?.review}
-                  />
-                </List.Item>
-              )}
-            />
-          </Card>
+          <h3 style={{ marginTop: token.sizeXL }}>Reviews</h3>
+          {/* <Card> */}
+          <List
+            itemLayout="horizontal"
+            style={{ marginBottom: token.sizeXXL }}
+            dataSource={feedbackData}
+            renderItem={(item: any, index) => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={
+                    <Avatar
+                      src={<Image src={commonProfileImg} alt="tutor profile" />}
+                    />
+                  }
+                  title={item?.user?.name}
+                  description={item?.review}
+                />
+              </List.Item>
+            )}
+          />
+          {/* </Card> */}
         </Col>
         <Col xs={{ span: 24, order: 1 }} md={{ span: 9, order: 2 }}>
           <Card
             style={{
-              minHeight: "400px",
+              // minHeight: "400px",
               maxWidth: 400,
               // border:"1px solid gray",
               // boxShadow: "0px 0px 1px rgba(0, 0, 0, 0.3)",
-              margin: "0 auto",
+              margin: `${token.sizeXL} auto `,
             }}
             cover={
               <Image
@@ -262,7 +245,13 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                 </>
               }
             />
-            <Button block size="large" type="primary">
+            <Button
+              block
+              size="large"
+              type="primary"
+              style={{ marginTop: token.size }}
+              onClick={() => setOpen(true)}
+            >
               BOOK THIS TUITION
             </Button>
             <List
@@ -294,6 +283,21 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
           </Card>
         </Col>
       </Row>
+      <ServiceBookingForm
+        open={open}
+        setOpen={setOpen}
+        availableServices={availableServices}
+      />
+      {/* <CustomModal
+        title="Change Role"
+        isOpen={open}
+        closeModal={() => setOpen(false)}
+        handleOk={handleAddBooking}
+      >
+        <div>
+          
+        </div>
+      </CustomModal> */}
       <CustomFooter />
       {/* ----------------don't touch anyway--------------------- */}
       {/* <Row

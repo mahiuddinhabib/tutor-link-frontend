@@ -16,7 +16,7 @@ const UpdateTutorPage = ({ params }: { params: { tutorId: string } }) => {
   //   console.log(tutorData);
 
   const [updateUser] = useUpdateUserMutation();
-  //@ts-ignore
+
 
   const onSubmit = async (values: any) => {
     try {

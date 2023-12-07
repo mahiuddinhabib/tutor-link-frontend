@@ -53,9 +53,9 @@ const ReviewCarousel = () => {
                 }}
               />
               <h3 style={{marginBottom:"10px"}}>{f?.user?.name}</h3>
-              <Rate disabled defaultValue={4} />
+              <Rate disabled value={f?.rating} />
               <p>
-                {f?.service?.title} is {f?.review}
+                {f?.review}
               </p>
             </div>
           </div>
