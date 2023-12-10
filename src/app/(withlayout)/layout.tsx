@@ -5,6 +5,7 @@ import { isLoggedIn } from "@/services/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();
@@ -19,19 +20,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }, [router, isLoading, userLoggedIn]);
 
   if (!isLoading) {
-    return (
-      <Row
-        justify="center"
-        align="middle"
-        style={{
-          height: "100vh",
-        }}
-      >
-        <Space>
-          <Spin tip="Loading" size="large"></Spin>
-        </Space>
-      </Row>
-    );
+    return <LoadingSpinner />;
   }
 
   return (

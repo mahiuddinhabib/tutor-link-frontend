@@ -1,6 +1,6 @@
 "use client"
 import ClickableCard from "@/components/ui/ClickableCard";
-import CustomNavbar from "@/components/ui/CustomNavbar";
+import Navbar from "@/components/ui/Navbar";
 import {
   useServicesBySubjectQuery,
 } from "@/redux/api/serviceApi";
@@ -13,7 +13,7 @@ const CategorizedServices = ({ params }: { params: { subjectId: string } }) => {
   const { data, isLoading } = useServicesBySubjectQuery(subjectId);
   return (
     <div>
-      <CustomNavbar />
+      <Navbar />
 
       <Row gutter={[30, 30]} style={{ margin: "50px 10%"}}>
         {data?.map((service: any) => (

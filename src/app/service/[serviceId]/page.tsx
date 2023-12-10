@@ -4,7 +4,6 @@ import Form from "@/components/Forms/Form";
 import { useGetAvailableServicesQuery } from "@/redux/api/availableServiceApi";
 import commonCardImg from "@/assets/common-card-img.jpeg";
 import commonProfileImg from "@/assets/profile.png";
-import { useSingleServiceQuery } from "@/redux/api/serviceApi";
 import {
   SolutionOutlined,
   CalendarOutlined,
@@ -20,12 +19,10 @@ import {
   List,
   Rate,
   Row,
-  message,
   theme,
 } from "antd";
 import Image from "next/image";
-import React, { useState } from "react";
-import { useAddBookingMutation } from "@/redux/api/bookingApi";
+import React, { useLayoutEffect, useState } from "react";
 import Navbar from "@/components/ui/Navbar";
 import CustomFooter from "@/components/ui/CustomFooter";
 import FormTextArea from "@/components/Forms/FormTextArea";
@@ -34,6 +31,8 @@ import {
   useGetFeedbacksQuery,
 } from "@/redux/api/feedbackApi";
 import ServiceBookingForm from "@/components/Services/ServiceBookingForm";
+import { isLoggedIn } from "@/services/auth.service";
+import { redirect } from "next/navigation";
 
 const text = `
   A dog is a type of domesticated animal.
@@ -46,10 +45,17 @@ const { useToken } = theme;
 
 const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
   const serviceId = params.serviceId;
+
+  useLayoutEffect(() => {
+    const userLoggedIn = isLoggedIn();
+    if (!userLoggedIn) {
+      redirect("/login");
+    }
+  }, []);
+
   const { token } = useToken();
   const [open, setOpen] = useState<boolean>(false);
   const [rating, setRating] = useState(0);
-  const [availableServiceId, setAvailableServiceId] = useState<string>("");
 
   const { data: availableServiceData, isLoading: isServiceLoading } =
     useGetAvailableServicesQuery(undefined);
@@ -58,45 +64,12 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
     (s: any) => s.serviceId === serviceId
   );
 
-  const [addBooking] = useAddBookingMutation();
-  // console.log(availableServiceData);
-
   const { data: feedback, isLoading: isFeedbackLoading } =
     useGetFeedbacksQuery(undefined);
 
   const [addFeedback] = useAddFeedbackMutation();
 
   const feedbackData = feedback?.filter((f: any) => f.serviceId === serviceId);
-
-  // console.log(availableServices);
-
-  const scheduleOptions = availableServices?.map((service: any) => {
-    return {
-      label: service?.startTime,
-      value: service?.id,
-      disabled: service?.isBooked,
-    };
-  });
-
-  const handleAddBooking = async () => {
-    console.log(availableServiceId);
-    try {
-      const res = await addBooking({
-        availableServiceId,
-      }).unwrap();
-      console.log(res);
-      if (res?.id) {
-        message.success("Booking Pending");
-        setOpen(false);
-      } else {
-        message.error("Another user requested for this service");
-        setOpen(false);
-      }
-    } catch (err: any) {
-      message.error(err.message);
-      setOpen(false);
-    }
-  };
 
   const onSubmit = async (values: any) => {
     try {
@@ -199,6 +172,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
             itemLayout="horizontal"
             style={{ marginBottom: token.sizeXXL }}
             dataSource={feedbackData}
+            loading={isFeedbackLoading}
             renderItem={(item: any, index) => (
               <List.Item>
                 <List.Item.Meta
@@ -218,10 +192,6 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
         <Col xs={{ span: 24, order: 1 }} md={{ span: 9, order: 2 }}>
           <Card
             style={{
-              // minHeight: "400px",
-              // maxWidth: 400,
-              // border:"1px solid gray",
-              // boxShadow: "0px 0px 1px rgba(0, 0, 0, 0.3)",
               margin: `${token.sizeXL} auto `,
             }}
             cover={
@@ -232,9 +202,6 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                 sizes="100vw"
                 style={{ width: "100%", height: "auto" }}
                 alt="card image"
-                // width={300}
-                // style={{ height: "auto" }}
-                // alt="card image here"
               />
             }
           >
@@ -300,65 +267,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
         setOpen={setOpen}
         availableServices={availableServices}
       />
-      {/* <CustomModal
-        title="Change Role"
-        isOpen={open}
-        closeModal={() => setOpen(false)}
-        handleOk={handleAddBooking}
-      >
-        <div>
-          
-        </div>
-      </CustomModal> */}
       <CustomFooter />
-      {/* ----------------don't touch anyway--------------------- */}
-      {/* <Row
-      justify="center"
-      align="middle"
-      style={{
-        minHeight: "100vh",
-      }}
-    >
-      <Col sm={12} md={16} lg={10}>
-        <Image src={commonCardImg} width={500} alt="login image" />
-      </Col>
-      <Col sm={12} md={8} lg={8}>
-        <h3>
-          {availableServices ? availableServices[0]?.service?.title : "Title"}
-        </h3>
-        <p>
-          Instructor:{" "}
-          {availableServices
-            ? availableServices[0]?.service?.tutor?.name
-            : "Tutor"}
-        </p>
-        <p>
-          Price:{" "}
-          {availableServices ? availableServices[0]?.service?.price : "Price"}
-        </p>
-        <p>Book this service</p>
-        <Select
-          placeholder="Select Schedule"
-          allowClear
-          style={{ width: 300 }}
-          onChange={(value) => {
-            if (value) {
-              setAvailableServiceId(value);
-              setOpen(true);
-            }
-          }}
-          options={scheduleOptions}
-        />
-      </Col>
-      <CustomModal
-        title="Change Role"
-        isOpen={open}
-        closeModal={() => setOpen(false)}
-        handleOk={handleAddBooking}
-      >
-        <p className="my-5">Do you want to book this service?</p>
-      </CustomModal>
-    </Row> */}
     </>
   );
 };
