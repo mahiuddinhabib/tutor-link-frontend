@@ -130,11 +130,7 @@ const Navbar = () => {
                 marginLeft: 15,
               }}
             >
-              <Image
-                src={BrandIcon}
-                alt="BrandIcon"
-                height={35}
-              />
+              <Image src={BrandIcon} alt="BrandIcon" height={35} />
               <h1
                 style={{
                   display: "inline-block",
@@ -161,7 +157,6 @@ const Navbar = () => {
               marginLeft: "10fpx",
               borderBottom: "none",
               backgroundColor: "inherit",
-              // justifyItems: "start",
             }}
           />
         </div>

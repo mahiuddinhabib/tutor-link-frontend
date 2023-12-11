@@ -33,6 +33,7 @@ import {
 import ServiceBookingForm from "@/components/Services/ServiceBookingForm";
 import { isLoggedIn } from "@/services/auth.service";
 import { redirect } from "next/navigation";
+import { useGetFAQsQuery } from "@/redux/api/faqApi";
 
 const text = `
   A dog is a type of domesticated animal.
@@ -59,6 +60,8 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
 
   const { data: availableServiceData, isLoading: isServiceLoading } =
     useGetAvailableServicesQuery(undefined);
+
+  const { data: FAQs, isLoading: isFAQLoading } = useGetFAQsQuery(undefined);
 
   const availableServices = availableServiceData?.filter(
     (s: any) => s.serviceId === serviceId
@@ -140,23 +143,14 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
           </h3>
           <Collapse
             accordion
-            items={[
-              {
-                key: "1",
-                label: "This is panel header 1",
-                children: <p>{text}</p>,
-              },
-              {
-                key: "2",
-                label: "This is panel header 2",
-                children: <p>{text}</p>,
-              },
-              {
-                key: "3",
-                label: "This is panel header 3",
-                children: <p>{text}</p>,
-              },
-            ]}
+            defaultActiveKey="0"
+            items={
+                FAQs?.map((faq:any, index: number) => ({
+                key: index,
+                label: faq?.question,
+                children: faq?.answer,
+              }))
+            }
           />
 
           <Card style={{ textAlign: "center", marginTop: token.sizeXL }}>
@@ -188,7 +182,6 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
           <h3 style={{ marginTop: token.sizeXL, fontSize: token.fontSizeXL }}>
             Reviews
           </h3>
-          {/* <Card> */}
           <List
             itemLayout="horizontal"
             style={{ marginBottom: token.sizeXXL }}
@@ -217,7 +210,6 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
               </List.Item>
             )}
           />
-          {/* </Card> */}
         </Col>
         <Col xs={{ span: 24, order: 1 }} md={{ span: 9, order: 2 }}>
           <Card
@@ -245,9 +237,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                       ? availableServices[0]?.service?.price
                       : "Price"}
                   </h2>
-                  <span style={{ color: "gray", }}>
-                    /month
-                  </span>
+                  <span style={{ color: "gray" }}>/month</span>
                 </>
               }
             />
