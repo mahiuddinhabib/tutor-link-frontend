@@ -82,26 +82,29 @@ const Navbar = () => {
           }}
           onClick={() => setOpenMenu(true)}
         />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Image src={BrandIcon} alt="BrandIcon" height={35} />
-          <h2
+        <Link href="/" style={{ textDecoration: "none" }}>
+          <div
             style={{
-              display: "inline-block",
-              marginLeft: 7,
-              fontSize: "1.5rem",
-              color: token.colorPrimary,
-              fontFamily: "Papyrus",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            Tutor Link
-          </h2>
-        </div>
+            <Image src={BrandIcon} alt="BrandIcon" height={27} />
+            <h2
+              style={{
+                display: "inline-block",
+                marginLeft: 7,
+                // fontSize: "1.5rem",
+                fontStyle: "italic",
+                color: token.colorPrimary,
+                fontFamily: "Lora",
+              }}
+            >
+              Tutor Link
+            </h2>
+          </div>
+        </Link>
         <Dropdown menu={{ items }}>
           <Avatar
             style={{ marginRight: 15 }}
@@ -114,43 +117,54 @@ const Navbar = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            // justifyContent: "space-between",
             alignItems: "center",
-            marginLeft: 15,
           }}
         >
-          <Image
-            src={BrandIcon}
-            alt="BrandIcon"
-            height={0}
-            width={0}
-            style={{ height: "35px", width: "auto" }}
-          />
-          <h2
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginLeft: 15,
+              }}
+            >
+              <Image
+                src={BrandIcon}
+                alt="BrandIcon"
+                height={35}
+              />
+              <h1
+                style={{
+                  display: "inline-block",
+                  marginLeft: 7,
+                  // fontSize: "3rem",
+                  fontWeight: "bolder",
+                  fontStyle: "italic",
+                  color: token.colorPrimary,
+                  fontFamily: "Lora",
+                }}
+              >
+                Tutor Link
+              </h1>
+            </div>
+          </Link>
+          <Menu
+            mode="horizontal"
+            items={item}
             style={{
-              display: "inline-block",
-              marginLeft: 7,
-              fontSize: "clamp(1rem, 2vw, 1.6rem)",
-              fontWeight: "bolder",
-              color: token.colorPrimary,
-              fontFamily: "Papyrus",
+              fontSize: 18,
+              paddingTop: 10,
+              paddingBottom: 10,
+              minWidth: "400px",
+              marginLeft: "10fpx",
+              borderBottom: "none",
+              backgroundColor: "inherit",
+              // justifyItems: "start",
             }}
-          >
-            Tutor Link
-          </h2>
+          />
         </div>
-        <Menu
-          mode="horizontal"
-          items={item}
-          style={{
-            fontSize: 18,
-            paddingTop: 10,
-            paddingBottom: 10,
-            minWidth: "75%",
-            borderBottom: "none",
-            backgroundColor: "inherit",
-          }}
-        />
         <Dropdown menu={{ items }}>
           <Avatar
             style={{
@@ -168,7 +182,15 @@ const Navbar = () => {
         closable={false}
         onClose={() => setOpenMenu(false)}
       >
-        <h2 style={{ textAlign: "center", marginBottom: 10 }}>Home Menu</h2>
+        <h3
+          style={{
+            textAlign: "center",
+            marginBottom: 10,
+            textDecoration: "underline",
+          }}
+        >
+          Home Menu
+        </h3>
         <Menu
           mode="inline"
           items={item}

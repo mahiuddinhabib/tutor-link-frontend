@@ -74,9 +74,9 @@ const ServiceBookingForm = ({
       showOkButton={false}
     >
       <>
-        <h3 style={{ textAlign: "center", marginBottom: "15px" }}>
+        <h4 style={{ textAlign: "center", marginTop: "15px" }}>
           Your Personal Info
-        </h3>
+        </h4>
 
         <div style={{}}>
           <Form submitHandler={onSubmit} defaultValues={defaultValues}>
@@ -133,9 +133,9 @@ const ServiceBookingForm = ({
               />
             </div>
             <div>
-              <h3 style={{ margin: "15px 0", textAlign: "center" }}>
+              <h4 style={{ marginTop: "15px", textAlign: "center" }}>
                 Tuition Info
-              </h3>
+              </h4>
               <p style={{ marginBottom: "7px" }}>
                 Title:{" "}
                 {availableServices
@@ -145,11 +145,11 @@ const ServiceBookingForm = ({
               <p style={{ marginBottom: "7px" }}>
                 Subject:{" "}
                 {availableServices
-                  ? availableServices[0]?.service?.subjectId
+                  ? availableServices[0]?.service?.subject?.title
                   : "Title"}
               </p>
               <p style={{ marginBottom: "7px" }}>
-                Subject:{" "}
+                Tutor:{" "}
                 {availableServices
                   ? availableServices[0]?.service?.tutor?.name
                   : "Tutor"}

@@ -22,13 +22,7 @@ const Overview = () => {
             style={{ width: "100%", height: "auto" }}
           />
         </Col>
-        <Col
-          xs={24}
-          sm={24}
-          md={12}
-          lg={8}
-          className="joinDiv"
-        >
+        <Col xs={24} sm={24} md={12} lg={8} className="joinDiv">
           <h2
             className="desktopMenu"
             style={{ fontSize: "35px", marginBottom: "20px" }}
@@ -37,16 +31,16 @@ const Overview = () => {
           </h2>
           <p
             style={{
-              fontSize: "20px",
+              fontSize: "18px",
               textAlign: "justify",
               marginTop: "15px",
               marginBottom: "15px",
             }}
           >
-            Welcome to Tutor Link! We believe in the transformative power of
-            education. We are committed to connecting students with exceptional
-            tutors, facilitating effective learning experiences, and fostering a
-            vibrant community of learners.
+            Are you passionate about sharing knowledge and helping students
+            succeed? Tutor Link welcomes skilled and enthusiastic individuals to
+            join our team of tutors and help students achieve their academic and
+            professional goals. Join us today and become a part of the Tutor Link family!
           </p>
           <Button size="large" type="primary" shape="round">
             Join Our Team

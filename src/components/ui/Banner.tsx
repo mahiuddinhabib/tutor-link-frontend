@@ -5,6 +5,7 @@ import VectorImg1 from "@/assets/vector1.png";
 import VectorImg2 from "@/assets/vector2.png";
 import { Button, Col, Row } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 
 const Banner = () => {
   return (
@@ -26,22 +27,32 @@ const Banner = () => {
           }}
         >
           <div
-          className="bannerDiv"
+            className="bannerDiv"
             style={{
-            //   backgroundColor: "skyblue",
+              //   backgroundColor: "skyblue",
               width: "80%",
               // textAlign: "start",
             }}
           >
             <h1 style={{ fontSize: "45px" }}>
-              Lorem ipsum dolor sit amet consectetur
+              Elevate Your Learning Experience
             </h1>
-            <p style={{marginTop:"15px", marginBottom:"15px", fontSize:"18px"}}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Accusantium, maxime. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Accusantium, maxime.
+            <p
+              style={{
+                marginTop: "15px",
+                marginBottom: "15px",
+                fontSize: "18px",
+              }}
+            >
+              Tutor Link is a one-stop solution for all your academic needs. We
+              provide you with the best tutors to help you achieve your academic
+              goals.
             </p>
-            <Button size="large" type="primary" shape="round">Join Now</Button>
+            <Link href={"/login"}>
+              <Button size="large" type="primary" shape="round">
+                Join Now
+              </Button>
+            </Link>
           </div>
         </Col>
         <Col

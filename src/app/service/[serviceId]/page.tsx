@@ -94,16 +94,25 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
         style={{ margin: "0 auto", marginTop: token.sizeXL }}
       >
         <Col xs={{ span: 24, order: 2 }} md={{ span: 15, order: 1 }}>
-          <h3>
+          <h3 style={{ fontSize: token.fontSizeHeading2 }}>
             {availableServices ? availableServices[0]?.service?.title : "Title"}
           </h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, porro
-            inventore repellat et error similique quidem quia unde quisquam
-            tempore. Lorem ipsum dolor sit amet.
+          <p style={{ marginTop: token.sizeSM }}>
+            This courses offer a comprehensive curriculum, interactive lessons,
+            and expert guidance tailored for all levels of learners. Immerse
+            yourself in flexible and engaging learning experiences, designed to
+            provide practical insights and foster confidence in your
+            understanding of the subject.
           </p>
-          <h3>Instructor</h3>
-          <Card style={{ marginTop: token.sizeXL }} loading={isServiceLoading}>
+          <h3
+            style={{
+              fontSize: token.fontSizeXL,
+              marginTop: token.size,
+            }}
+          >
+            Instructor
+          </h3>
+          <Card style={{ marginTop: token.sizeSM }} loading={isServiceLoading}>
             <Meta
               avatar={
                 <Avatar
@@ -120,7 +129,13 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
             />
           </Card>
 
-          <h3 style={{ marginTop: token.sizeXL }}>
+          <h3
+            style={{
+              fontSize: token.fontSizeXL,
+              marginTop: token.sizeXL,
+              marginBottom: token.sizeMD,
+            }}
+          >
             Frequently Asked Questions
           </h3>
           <Collapse
@@ -145,11 +160,11 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
           />
 
           <Card style={{ textAlign: "center", marginTop: token.sizeXL }}>
-            <h3>Give a Feedback</h3>
+            <h3 style={{ marginBottom: token.sizeXS }}>Give a Feedback</h3>
             <Rate
               tooltips={["terrible", "bad", "normal", "good", "wonderful"]}
               allowClear
-              style={{ fontSize: 30 }}
+              style={{ fontSize: 30, marginBottom: token.sizeXS }}
               onChange={setRating}
               value={rating}
             />
@@ -160,13 +175,19 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                   placeholder="Write your feedback here"
                   rows={5}
                 />
-                <Button htmlType="submit" type="primary">
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  style={{ marginTop: token.sizeSM }}
+                >
                   Submit
                 </Button>
               </Form>
             </div>
           </Card>
-          <h3 style={{ marginTop: token.sizeXL }}>Reviews</h3>
+          <h3 style={{ marginTop: token.sizeXL, fontSize: token.fontSizeXL }}>
+            Reviews
+          </h3>
           {/* <Card> */}
           <List
             itemLayout="horizontal"
@@ -182,7 +203,16 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                     />
                   }
                   title={item?.user?.name}
-                  description={item?.review}
+                  description={
+                    <>
+                      <Rate
+                        style={{ fontSize: token.fontSize, color: "inherit" }}
+                        value={item?.rating}
+                      />{" "}
+                      <br />
+                      {item?.review}
+                    </>
+                  }
                 />
               </List.Item>
             )}
@@ -206,13 +236,18 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
             }
           >
             <Meta
+              // style={{ textAlign: "center" }}
               title={
                 <>
-                  Only{" "}
-                  {availableServices
-                    ? availableServices[0]?.service?.price
-                    : "Price"}{" "}
-                  Tk / Month
+                  <h2 style={{ display: "inline-block" }}>
+                    Only $
+                    {availableServices
+                      ? availableServices[0]?.service?.price
+                      : "Price"}
+                  </h2>
+                  <span style={{ color: "gray", }}>
+                    /month
+                  </span>
                 </>
               }
             />
@@ -220,7 +255,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
               block
               size="large"
               type="primary"
-              style={{ marginTop: token.size }}
+              style={{ margin: `${token.size}px 0` }}
               onClick={() => setOpen(true)}
             >
               BOOK THIS TUITION
@@ -246,7 +281,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                 },
               ]}
               renderItem={(item) => (
-                <List.Item style={{ border: "none" }}>
+                <List.Item style={{ border: "none", padding: "5px 0" }}>
                   <Avatar
                     style={{
                       backgroundColor: "#FFFFFF",
