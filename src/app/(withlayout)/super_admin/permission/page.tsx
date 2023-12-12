@@ -13,6 +13,7 @@ import FormSelectField, {
   SelectOptions,
 } from "@/components/Forms/FormSelectField";
 import { USER_ROLE } from "@/constants/role";
+import Header from "@/components/ui/Header";
 
 const PermissionPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -53,7 +54,7 @@ const PermissionPage = () => {
 
     try {
       const res = await updateUser({ id, body: { role: value } }).unwrap();
-        // console.log(res);
+      // console.log(res);
       if (res?.id) {
         message.success("Permission Updated!");
         setOpen(false);
@@ -99,7 +100,9 @@ const PermissionPage = () => {
 
   return (
     <div>
+      <Header title="Manage Permissions" />
       <Table
+        style={{ padding: "10px" }}
         loading={isLoading}
         columns={columns}
         dataSource={withoutSuperAdmin}

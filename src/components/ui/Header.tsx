@@ -5,7 +5,7 @@ import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
 const { Header: AntHeader } = Layout;
 
-const Header = () => {
+const Header = ({title}:{title:string}) => {
   const router = useRouter();
 
   const logOut = () => {
@@ -32,19 +32,14 @@ const Header = () => {
       }}
     >
       <Row
-        justify="end"
+        justify="space-between"
         align="middle"
         style={{
           height: "100%",
         }}
       >
-        <p
-          style={{
-            margin: "0px 5px",
-          }}
-        >
-          {role}
-        </p>
+        <span/>
+        <h2>{title}</h2>
         <Dropdown menu={{ items }}>
           <a>
             <Space wrap size={16}>

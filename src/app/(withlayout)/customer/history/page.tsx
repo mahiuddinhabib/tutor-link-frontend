@@ -3,10 +3,12 @@
 import { Table } from "antd";
 import dayjs from "dayjs";
 import { useGetBookingHistoryQuery } from "@/redux/api/bookingApi";
+import Header from "@/components/ui/Header";
 
 const ServiceHistoryPage = () => {
-const {data:bookingHistory, isLoading} = useGetBookingHistoryQuery(undefined);
-// console.log(bookingHistory);
+  const { data: bookingHistory, isLoading } =
+    useGetBookingHistoryQuery(undefined);
+  // console.log(bookingHistory);
 
   const columns = [
     {
@@ -29,7 +31,9 @@ const {data:bookingHistory, isLoading} = useGetBookingHistoryQuery(undefined);
 
   return (
     <div>
+      <Header title="Service History" />
       <Table
+        style={{ padding: "10px" }}
         loading={isLoading}
         columns={columns}
         dataSource={bookingHistory}

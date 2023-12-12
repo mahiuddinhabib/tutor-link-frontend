@@ -2,6 +2,7 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import Header from "@/components/ui/Header";
 import {
   useGetProfileQuery,
   useUpdateProfileMutation,
@@ -38,9 +39,8 @@ const UpdateSuperAdminProfile = ({ params }: any) => {
 
   return (
     <div>
-      <h1>Update This Profile</h1>
-
-      <div>
+      <Header title="Update Profile" />
+      <div style={{padding:"10px"}}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{

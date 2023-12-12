@@ -7,6 +7,7 @@ import {
   useGetBookingHistoryQuery,
   useGetBookingsQuery,
 } from "@/redux/api/bookingApi";
+import Header from "@/components/ui/Header";
 
 const PendingServicePage = () => {
   const { data: bookings, isLoading } = useGetBookingsQuery(undefined);
@@ -74,7 +75,9 @@ const PendingServicePage = () => {
 
   return (
     <div>
+      <Header title="Pending Services" />
       <Table
+      style={{padding:"10px"}}
         loading={isLoading}
         columns={columns}
         dataSource={pendingBooking}

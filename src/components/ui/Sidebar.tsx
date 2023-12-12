@@ -7,6 +7,7 @@ import { sidebarItems } from "@/constants/sidebarItems";
 import BrandIcon from "@/assets/iconBlack.png";
 import { getUserInfo } from "@/services/auth.service";
 import Image from "next/image";
+import Link from "next/link";
 
 const { Sider } = Layout;
 
@@ -35,35 +36,35 @@ const SideBar = () => {
         bottom: 0,
       }}
     >
-      <div
-        style={{
-          // color: "white",
-          // fontSize: "2rem",
-          // textAlign: "center",
-          // fontWeight: "bold",
-          // marginBottom: ".5rem",
-          // padding: "10px 0px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "15px 0px",
-        }}
-      >
-        <Image src={BrandIcon} alt="BrandIcon" height={23} />
-        <h2
+      <Link style={{ textDecoration: "none", color:"black" }} href="/">
+        <div
           style={{
-            fontSize: "1.5rem",
-            marginLeft: 5,
-            fontStyle: "italic",
-            display: `${!collapsed ? "block" : "none"}`,
+            // color: "white",
+            // fontSize: "2rem",
+            // textAlign: "center",
+            // fontWeight: "bold",
+            // marginBottom: ".5rem",
+            // padding: "10px 0px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "15px 0px",
           }}
         >
-          Tutor Link
-        </h2>
-      </div>
+          <Image src={BrandIcon} alt="BrandIcon" height={23} />
+          <h2
+            style={{
+              fontSize: "1.5rem",
+              marginLeft: 5,
+              fontStyle: "italic",
+              display: `${!collapsed ? "block" : "none"}`,
+            }}
+          >
+            Tutor Link
+          </h2>
+        </div>
+      </Link>
       <Menu
-        // theme="dark"
-        // defaultSelectedKeys={[sidebarItems(role)[0]?.key]}
         defaultSelectedKeys={["defaultSelectedKey"]}
         defaultOpenKeys={["defaultOpenKey"]}
         mode="inline"

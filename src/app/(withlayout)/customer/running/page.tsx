@@ -7,6 +7,7 @@ import {
   useGetBookingHistoryQuery,
   useGetBookingsQuery,
 } from "@/redux/api/bookingApi";
+import Header from "@/components/ui/Header";
 
 const RunningServicePage = () => {
   const { data: bookings, isLoading } = useGetBookingsQuery(undefined);
@@ -77,7 +78,9 @@ const RunningServicePage = () => {
 
   return (
     <div>
+      <Header title="Running Services" />
       <Table
+      style={{padding:"10px"}}
         loading={isLoading}
         columns={columns}
         dataSource={runningBooking}

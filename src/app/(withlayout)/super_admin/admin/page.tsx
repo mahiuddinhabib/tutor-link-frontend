@@ -5,6 +5,7 @@ import { useDeleteUserMutation, useGetUsersQuery } from "@/redux/api/userApi";
 import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
 import { useState } from "react";
+import Header from "@/components/ui/Header";
 
 const AdminPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -76,7 +77,9 @@ const AdminPage = () => {
 
   return (
     <div>
+      <Header title="Admins" />
       <Table
+        style={{ padding: "10px" }}
         loading={isLoading}
         columns={columns}
         dataSource={admins}

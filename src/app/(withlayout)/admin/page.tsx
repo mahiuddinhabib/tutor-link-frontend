@@ -40,7 +40,7 @@ const UpdateAdminProfile = ({ params }: any) => {
     <div>
       <h1>Update Your Profile</h1>
 
-      <div>
+      <div style={{ padding: "10px" }}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{
@@ -66,12 +66,7 @@ const UpdateAdminProfile = ({ params }: any) => {
                   marginBottom: "10px",
                 }}
               >
-                <FormInput
-                  type="text"
-                  name="name"
-                  size="large"
-                  label="name"
-                />
+                <FormInput type="text" name="name" size="large" label="name" />
               </Col>
               <Col
                 className="gutter-row"

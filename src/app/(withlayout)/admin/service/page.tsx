@@ -1,7 +1,10 @@
 "use client";
 import { Button, message } from "antd";
 import { useState } from "react";
-import { useDeleteServiceMutation, useServicesQuery } from "@/redux/api/serviceApi";
+import {
+  useDeleteServiceMutation,
+  useServicesQuery,
+} from "@/redux/api/serviceApi";
 import CustomTable from "@/components/ui/CustomTable";
 import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
@@ -15,7 +18,7 @@ const ServicePage = () => {
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
 
-    const [deleteService] = useDeleteServiceMutation();
+  const [deleteService] = useDeleteServiceMutation();
 
   query["limit"] = size;
   query["page"] = page;
@@ -113,17 +116,19 @@ const ServicePage = () => {
 
   return (
     <div>
-      <CustomTable
-        loading={isLoading}
-        columns={columns}
-        dataSource={services}
-        pageSize={size}
-        totalPages={meta?.total}
-        showSizeChanger={true}
-        onPaginationChange={onPaginationChange}
-        onTableChange={onTableChange}
-        showPagination={true}
-      />
+      <div style={{ padding: "10px" }}>
+        <CustomTable
+          loading={isLoading}
+          columns={columns}
+          dataSource={services}
+          pageSize={size}
+          totalPages={meta?.total}
+          showSizeChanger={true}
+          onPaginationChange={onPaginationChange}
+          onTableChange={onTableChange}
+          showPagination={true}
+        />
+      </div>
 
       <CustomModal
         title="Remove Customer"

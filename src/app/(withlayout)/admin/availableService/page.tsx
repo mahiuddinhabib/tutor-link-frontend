@@ -5,6 +5,7 @@ import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
 import { useState } from "react";
 import { useDeleteAvailableServiceMutation, useGetAvailableServicesQuery } from "@/redux/api/availableServiceApi";
+import Header from "@/components/ui/Header";
 
 const AvailableServicePage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -102,7 +103,9 @@ const AvailableServicePage = () => {
 
   return (
     <div>
+      <Header title="Available Services" />
       <Table
+        style={{ padding: "10px" }}
         loading={isLoading}
         columns={columns}
         dataSource={availableService}

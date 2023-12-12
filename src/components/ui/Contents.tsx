@@ -17,7 +17,7 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
       {/* <Navbar /> */}
       <div
         style={{
-          padding: "10px",
+          // padding: "10px",
         }}
       >
         {children}

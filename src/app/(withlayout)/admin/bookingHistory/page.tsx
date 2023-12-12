@@ -41,6 +41,7 @@ const BookingHistoryPage = () => {
   return (
     <div>
       <Table
+        style={{ padding: "10px" }}
         loading={isLoading}
         columns={columns}
         dataSource={bookingHistory}
