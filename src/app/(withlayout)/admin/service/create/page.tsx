@@ -5,6 +5,7 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField, {
   SelectOptions,
 } from "@/components/Forms/FormSelectField";
+import Header from "@/components/ui/Header";
 import {
   useAddServiceMutation,
   useSingleServiceQuery,
@@ -58,11 +59,9 @@ const CreateServicePage = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Create Service
-      </h1>
+      <Header title="Create New Service" />
 
-      <div style={{ margin: "auto", width: "50%" }}>
+      <div style={{ margin: "auto", width: "50%", padding:"10px" }}>
         <Form submitHandler={onSubmit} resolver={yupResolver(serviceSchema)}>
           <div
             style={{

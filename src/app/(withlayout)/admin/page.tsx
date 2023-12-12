@@ -1,10 +1,8 @@
 "use client";
 
 import Form from "@/components/Forms/Form";
-import FormDatePicker from "@/components/Forms/FormDatePicker";
 import FormInput from "@/components/Forms/FormInput";
-import FormSelectField from "@/components/Forms/FormSelectField";
-import FormTextArea from "@/components/Forms/FormTextArea";
+import Header from "@/components/ui/Header";
 import { useGetProfileQuery, useUpdateProfileMutation } from "@/redux/api/profileApi";
 
 import { Button, Col, Row, message } from "antd";
@@ -38,8 +36,7 @@ const UpdateAdminProfile = ({ params }: any) => {
 
   return (
     <div>
-      <h1>Update Your Profile</h1>
-
+      <Header title="Your Profile" />
       <div style={{ padding: "10px" }}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div

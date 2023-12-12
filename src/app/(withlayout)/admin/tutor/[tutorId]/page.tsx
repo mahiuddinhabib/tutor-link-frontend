@@ -2,6 +2,7 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import Header from "@/components/ui/Header";
 import {
   useGetSingleUserQuery,
   useUpdateUserMutation,
@@ -17,7 +18,6 @@ const UpdateTutorPage = ({ params }: { params: { tutorId: string } }) => {
 
   const [updateUser] = useUpdateUserMutation();
 
-
   const onSubmit = async (values: any) => {
     try {
       const res = await updateUser({ id: tutorId, body: values }).unwrap();
@@ -27,7 +27,7 @@ const UpdateTutorPage = ({ params }: { params: { tutorId: string } }) => {
       }
     } catch (err: any) {
       message.error(err.message);
-        // console.error(err.message);
+      // console.error(err.message);
     }
   };
 
@@ -40,11 +40,9 @@ const UpdateTutorPage = ({ params }: { params: { tutorId: string } }) => {
   };
   return (
     <div>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Update This Profile
-      </h1>
+      <Header title="Update Tutor" />
 
-      <div style={{ margin: "auto", width: "50%" }}>
+      <div style={{ margin: "auto", width: "50%", padding: "10px" }}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{

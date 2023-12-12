@@ -1,21 +1,30 @@
 "use client";
 
-import { Button, Table, message } from "antd";
+import { Button, Table, message, theme } from "antd";
 import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
 import { useState } from "react";
-import { useDeleteAvailableServiceMutation, useGetAvailableServicesQuery } from "@/redux/api/availableServiceApi";
+import {
+  useDeleteAvailableServiceMutation,
+  useGetAvailableServicesQuery,
+} from "@/redux/api/availableServiceApi";
 import Header from "@/components/ui/Header";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+
+const { useToken } = theme;
 
 const AvailableServicePage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [availableServiceId, setAvailableServiceId] = useState<string>("");
 
-  const { data: availableService, isLoading } = useGetAvailableServicesQuery(undefined);
-  
-  console.log(availableService);
+  const { data: availableService, isLoading } =
+    useGetAvailableServicesQuery(undefined);
+
+  // console.log(availableService);
 
   const [deleteAvailableService] = useDeleteAvailableServiceMutation();
+
+  const { token } = useToken();
 
   /*   const updateHandler = async (id: string) => {
     try {
@@ -34,8 +43,7 @@ const AvailableServicePage = () => {
       if (res?.id) {
         message.success("Available service deleted");
         setOpen(false);
-      }
-      else{
+      } else {
         message.error("Service has pending request");
         setOpen(false);
       }
@@ -70,7 +78,7 @@ const AvailableServicePage = () => {
       title: "Is Booked",
       dataIndex: "isBooked",
       render: function (data: any) {
-        return <>{data? "YES":"NO"}</>;
+        return <>{data ? "YES" : "NO"}</>;
       },
     },
     {
@@ -80,21 +88,22 @@ const AvailableServicePage = () => {
           <>
             <Link href={`/admin/availableService/${data?.id}`}>
               <Button style={{ marginRight: "7px" }} type="primary">
-                {/* <DeleteOutlined /> */}
                 Reschedule
               </Button>
             </Link>
-            {!data.isBooked && <Button
-              onClick={() => {
-                setOpen(true);
-                setAvailableServiceId(data?.id);
-              }}
-              type="primary"
-              danger
-            >
-              {/* <DeleteOutlined /> */}
-              Delete
-            </Button>}
+            {!data.isBooked && (
+              <Button
+                onClick={() => {
+                  setOpen(true);
+                  setAvailableServiceId(data?.id);
+                }}
+                type="primary"
+                danger
+              >
+                {/* <DeleteOutlined /> */}
+                Delete
+              </Button>
+            )}
           </>
         );
       },
@@ -112,10 +121,19 @@ const AvailableServicePage = () => {
         pagination={false}
       />
       <CustomModal
-        title="Remove Customer"
+        title={
+          <h3>
+            <ExclamationCircleFilled
+              style={{ color: token.colorWarning, marginRight: "10px" }}
+            />
+            Delete Available Service
+          </h3>
+        }
         isOpen={open}
         closeModal={() => setOpen(false)}
         handleOk={() => deleteHandler(availableServiceId)}
+        okText="Delete"
+        okType="danger"
       >
         <p className="my-5">Do you want to remove this available service?</p>
       </CustomModal>

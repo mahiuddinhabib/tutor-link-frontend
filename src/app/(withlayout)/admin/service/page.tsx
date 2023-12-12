@@ -1,5 +1,5 @@
 "use client";
-import { Button, message } from "antd";
+import { Button, message, theme } from "antd";
 import { useState } from "react";
 import {
   useDeleteServiceMutation,
@@ -8,8 +8,13 @@ import {
 import CustomTable from "@/components/ui/CustomTable";
 import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
+import Header from "@/components/ui/Header";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+const { useToken } = theme;
+
 
 const ServicePage = () => {
+  const { token } = useToken();
   const query: Record<string, any> = {};
   const [open, setOpen] = useState<boolean>(false);
   const [serviceId, setServiceId] = useState<string>("");
@@ -116,6 +121,7 @@ const ServicePage = () => {
 
   return (
     <div>
+      <Header title="Services" />
       <div style={{ padding: "10px" }}>
         <CustomTable
           loading={isLoading}
@@ -131,12 +137,21 @@ const ServicePage = () => {
       </div>
 
       <CustomModal
-        title="Remove Customer"
+        title={
+          <>
+            <ExclamationCircleFilled
+              style={{ color: token.colorWarning, marginRight: "10px" }}
+            />
+            Delete This Service?
+          </>
+        }
         isOpen={open}
         closeModal={() => setOpen(false)}
         handleOk={() => deleteHandler(serviceId)}
+        okText="Delete"
+        okType="danger"
       >
-        <p className="my-5">Do you want to remove this service?</p>
+        <p className="my-5">Do you want to delete this service?</p>
       </CustomModal>
     </div>
   );

@@ -42,7 +42,7 @@ const ServiceBookingForm = ({
   const onSubmit = async (values: any) => {
     const { availableServiceId, ...userData } = values;
     console.log(availableServiceId, userData);
-    
+
     try {
       await updateProfile(userData).unwrap();
       const res = await addBooking({

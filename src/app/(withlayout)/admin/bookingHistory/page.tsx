@@ -6,6 +6,7 @@ import {
   useGetBookingHistoryQuery,
   useGetSingleBookingQuery,
 } from "@/redux/api/bookingApi";
+import Header from "@/components/ui/Header";
 
 const BookingHistoryPage = () => {
   const { data: bookingHistory, isLoading } =
@@ -40,6 +41,7 @@ const BookingHistoryPage = () => {
 
   return (
     <div>
+      <Header title="Booking History" />
       <Table
         style={{ padding: "10px" }}
         loading={isLoading}

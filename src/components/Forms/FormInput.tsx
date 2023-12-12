@@ -21,9 +21,7 @@ const FormInput = ({
   type,
   size = "large",
   value,
-  id,
   placeholder,
-  validation,
   label,
   required,
 }: IInput) => {

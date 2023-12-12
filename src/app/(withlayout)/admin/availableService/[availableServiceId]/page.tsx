@@ -2,14 +2,23 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import { useSingleAvailableServiceQuery, useUpdateAvailableServiceMutation } from "@/redux/api/availableServiceApi";
+import Header from "@/components/ui/Header";
+import {
+  useSingleAvailableServiceQuery,
+  useUpdateAvailableServiceMutation,
+} from "@/redux/api/availableServiceApi";
 import { Button, message } from "antd";
 import React from "react";
 
-const UpdateAvailableServicePage = ({ params }: { params: { availableServiceId: string } }) => {
+const UpdateAvailableServicePage = ({
+  params,
+}: {
+  params: { availableServiceId: string };
+}) => {
   const availableServiceId = params.availableServiceId;
 
-  const { data: availableServiceData, isLoading } = useSingleAvailableServiceQuery(availableServiceId);
+  const { data: availableServiceData, isLoading } =
+    useSingleAvailableServiceQuery(availableServiceId);
   //   console.log(availableServiceData);
 
   const [updateAvailableService] = useUpdateAvailableServiceMutation();
@@ -17,7 +26,10 @@ const UpdateAvailableServicePage = ({ params }: { params: { availableServiceId: 
 
   const onSubmit = async (values: any) => {
     try {
-      const res = await updateAvailableService({ id: availableServiceId, body: values }).unwrap();
+      const res = await updateAvailableService({
+        id: availableServiceId,
+        body: values,
+      }).unwrap();
       //   console.log(res);
       if (res?.id) {
         message.success("Available service updated!");
@@ -32,11 +44,9 @@ const UpdateAvailableServicePage = ({ params }: { params: { availableServiceId: 
   };
   return (
     <div>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Update Schedule
-      </h1>
+      <Header title="Update Available Service" />
 
-      <div style={{ margin: "auto", width: "50%" }}>
+      <div style={{ margin: "auto", width: "50%", padding: "10px" }}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{

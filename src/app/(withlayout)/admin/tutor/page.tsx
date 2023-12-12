@@ -1,12 +1,17 @@
 "use client";
 
-import { Button, Table, message } from "antd";
+import { Button, Table, message, theme } from "antd";
 import { useDeleteUserMutation, useGetUsersQuery } from "@/redux/api/userApi";
 import { useState } from "react";
 import CustomModal from "@/components/ui/CustomModal";
 import Link from "next/link";
+import Header from "@/components/ui/Header";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+
+const { useToken } = theme;
 
 const TutorPage = () => {
+  const { token } = useToken();
   const [open, setOpen] = useState<boolean>(false);
   const [tutorId, setTutorId] = useState<string>("");
   const { data: users, isLoading } = useGetUsersQuery(undefined);
@@ -77,17 +82,28 @@ const TutorPage = () => {
 
   return (
     <div>
+      <Header title="Tutors" />
       <Table
+        style={{ padding: "10px" }}
         loading={isLoading}
         columns={columns}
         dataSource={tutors}
         pagination={false}
       />
       <CustomModal
-        title="Remove Tutor"
+        title={
+          <>
+            <ExclamationCircleFilled
+              style={{ color: token.colorWarning, marginRight: "10px" }}
+            />
+            Remove This Tutor?
+          </>
+        }
         isOpen={open}
         closeModal={() => setOpen(false)}
         handleOk={() => deleteHandler(tutorId)}
+        okText="Delete"
+        okType="danger"
       >
         <p className="my-5">Do you want to remove this tutor?</p>
       </CustomModal>

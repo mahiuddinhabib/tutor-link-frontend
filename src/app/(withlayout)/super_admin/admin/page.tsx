@@ -1,13 +1,17 @@
 "use client";
 
-import { Button, Table, message } from "antd";
+import { Button, Table, message, theme } from "antd";
 import { useDeleteUserMutation, useGetUsersQuery } from "@/redux/api/userApi";
 import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
 import { useState } from "react";
 import Header from "@/components/ui/Header";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+
+const { useToken } = theme;
 
 const AdminPage = () => {
+  const { token } = useToken();
   const [open, setOpen] = useState<boolean>(false);
   const [adminId, setAdminId] = useState<string>("");
   const { data: users, isLoading } = useGetUsersQuery(undefined);
@@ -86,10 +90,19 @@ const AdminPage = () => {
         pagination={false}
       />
       <CustomModal
-        title="Remove Admin"
+        title={
+          <>
+            <ExclamationCircleFilled
+              style={{ color: token.colorWarning, marginRight: "10px" }}
+            />
+            Remove This Admin?
+          </>
+        }
         isOpen={open}
         closeModal={() => setOpen(false)}
         handleOk={() => deleteHandler(adminId)}
+        okText="Delete"
+        okType="danger"
       >
         <p className="my-5">Do you want to remove this admin?</p>
       </CustomModal>

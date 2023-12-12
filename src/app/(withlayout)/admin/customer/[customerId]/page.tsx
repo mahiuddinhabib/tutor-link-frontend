@@ -2,18 +2,21 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import Header from "@/components/ui/Header";
 import {
   useGetSingleUserQuery,
   useUpdateUserMutation,
 } from "@/redux/api/userApi";
-import { Button, message } from "antd";
+import { Avatar, Button, message } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import React from "react";
+import UploadImage from "@/components/ui/UploadImage";
 
 const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
   const customerId = params.customerId;
 
   const { data: customerData, isLoading } = useGetSingleUserQuery(customerId);
-//   console.log(customerData);
+  //   console.log(customerData);
 
   const [updateUser] = useUpdateUserMutation();
   //@ts-ignore
@@ -21,12 +24,12 @@ const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
   const onSubmit = async (values: any) => {
     try {
       const res = await updateUser({ id: customerId, body: values }).unwrap();
-    //   console.log(res);
+      //   console.log(res);
       if (res?.id) {
         message.success("Customer Updated!");
       }
     } catch (err: any) {
-    //   console.error(err.message);
+      // console.error(err.message);
     }
   };
 
@@ -39,10 +42,23 @@ const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
   };
   return (
     <div>
-      <h1 style={{textAlign:"center", marginBottom:"30px"}}>Update You Profile</h1>
+      <Header title="Update Customer" />
 
-      <div style={{margin: "auto", width:"50%"}}>
+      <div style={{ margin: "auto", maxWidth: "500px", padding: "10px" }}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "10px",
+            }}
+          >
+            <Avatar
+              size={100}
+              icon={<UserOutlined />}
+              // src={customerData?.profileImg}
+            />
+          </div>
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -56,7 +72,7 @@ const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
                 margin: "15px 0px",
               }}
             >
-              <FormInput type="text" name="name" size="large" label="name" />
+              <FormInput type="text" name="name" size="large" label="Name" />
             </div>
             <div
               style={{
@@ -90,9 +106,15 @@ const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
               />
             </div>
           </div>
-          <Button htmlType="submit" type="primary">
-            Update
-          </Button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              htmlType="submit"
+              type="primary"
+              style={{ margin: "0 auto" }}
+            >
+              Update
+            </Button>
+          </div>
         </Form>
       </div>
     </div>

@@ -3,6 +3,7 @@
 import { Table } from "antd";
 import dayjs from "dayjs";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
+import Header from "@/components/ui/Header";
 
 const BookingPage = () => {
   const { data: booking, isLoading } = useGetBookingsQuery(undefined);
@@ -53,6 +54,7 @@ const BookingPage = () => {
 
   return (
     <div>
+      <Header title="Booking" />
       <Table
         style={{ padding: "10px" }}
         loading={isLoading}

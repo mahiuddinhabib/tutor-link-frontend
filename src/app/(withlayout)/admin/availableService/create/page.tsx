@@ -5,6 +5,7 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField, {
   SelectOptions,
 } from "@/components/Forms/FormSelectField";
+import Header from "@/components/ui/Header";
 import {
   useAddAvailableServiceMutation,
   useSingleAvailableServiceQuery,
@@ -47,11 +48,9 @@ const CreateAvailableServicePage = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Create Available Service
-      </h1>
+      <Header title="Create Available Service" />
 
-      <div style={{ margin: "auto", width: "50%" }}>
+      <div style={{ margin: "auto", width: "50%", padding:"10px" }}>
         <Form
           submitHandler={onSubmit}
           resolver={yupResolver(availableServiceSchema)}

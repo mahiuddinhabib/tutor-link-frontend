@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Select, Table, message } from "antd";
+import { Button, Select, Table, message, theme } from "antd";
 import {
   useDeleteUserMutation,
   useGetUsersQuery,
@@ -14,8 +14,12 @@ import FormSelectField, {
 } from "@/components/Forms/FormSelectField";
 import { USER_ROLE } from "@/constants/role";
 import Header from "@/components/ui/Header";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+
+const { useToken } = theme;
 
 const PermissionPage = () => {
+  const { token } = useToken();
   const [open, setOpen] = useState<boolean>(false);
   // const [userId, setUserId] = useState<string>("");
   const [idValue, setIdValueId] = useState<Record<"id" | "value", string>>({
@@ -109,10 +113,19 @@ const PermissionPage = () => {
         pagination={false}
       />
       <CustomModal
-        title="Change Role"
+        title={
+          <>
+            <ExclamationCircleFilled
+              style={{ color: token.colorWarning, marginRight: "10px" }}
+            />
+            Change Role?
+          </>
+        }
         isOpen={open}
         closeModal={() => setOpen(false)}
         handleOk={permissionHandler}
+        okText="Delete"
+        okType="danger"
       >
         <p className="my-5">Do you want to make him {idValue.value}?</p>
       </CustomModal>

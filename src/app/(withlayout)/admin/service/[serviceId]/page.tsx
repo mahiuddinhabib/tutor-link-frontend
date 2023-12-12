@@ -2,6 +2,7 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import Header from "@/components/ui/Header";
 import {
   useSingleServiceQuery,
   useUpdateServiceMutation,
@@ -36,11 +37,9 @@ const UpdateServicePage = ({ params }: { params: { serviceId: string } }) => {
   };
   return (
     <div>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Update Service
-      </h1>
+      <Header title="Update Service" />
 
-      <div style={{ margin: "auto", width: "50%" }}>
+      <div style={{ margin: "auto", width: "50%", padding: "10px" }}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
           <div
             style={{

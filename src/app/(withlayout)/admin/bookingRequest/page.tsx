@@ -6,6 +6,7 @@ import {
   useGetBookingsQuery,
   useUpdateBookingStatusMutation,
 } from "@/redux/api/bookingApi";
+import Header from "@/components/ui/Header";
 
 const BookingRequestPage = () => {
   const { data: booking, isLoading } = useGetBookingsQuery(undefined);
@@ -91,6 +92,7 @@ const BookingRequestPage = () => {
 
   return (
     <div>
+      <Header title="Booking Requests" />
       <Table
         style={{ padding: "10px" }}
         loading={isLoading}
