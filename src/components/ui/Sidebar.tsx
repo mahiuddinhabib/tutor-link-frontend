@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Layout, Menu } from "antd";
 
 import { sidebarItems } from "@/constants/sidebarItems";
-import { USER_ROLE } from "@/constants/role";
+import BrandIcon from "@/assets/iconBlack.png";
 import { getUserInfo } from "@/services/auth.service";
+import Image from "next/image";
 
 const { Sider } = Layout;
 
@@ -37,21 +38,34 @@ const SideBar = () => {
       <div
         style={{
           // color: "white",
-          fontSize: "2rem",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginBottom: ".5rem",
-          padding: "10px 0px",
+          // fontSize: "2rem",
+          // textAlign: "center",
+          // fontWeight: "bold",
+          // marginBottom: ".5rem",
+          // padding: "10px 0px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "15px 0px",
         }}
       >
-        Tutor Link
+        <Image src={BrandIcon} alt="BrandIcon" height={23} />
+        <h2
+          style={{
+            fontSize: "1.5rem",
+            marginLeft: 5,
+            fontStyle: "italic",
+            display: `${!collapsed ? "block" : "none"}`,
+          }}
+        >
+          Tutor Link
+        </h2>
       </div>
       <Menu
         // theme="dark"
         // defaultSelectedKeys={[sidebarItems(role)[0]?.key]}
         defaultSelectedKeys={["defaultSelectedKey"]}
         defaultOpenKeys={["defaultOpenKey"]}
-        
         mode="inline"
         items={sidebarItems(role)}
       />
