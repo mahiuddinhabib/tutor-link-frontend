@@ -16,10 +16,13 @@ const SideBar = () => {
   const { role } = getUserInfo() as any;
   // console.log(role);
 
+  console.log(sidebarItems(role));
+
   return (
     <Sider
       collapsible
       collapsed={collapsed}
+      theme="light"
       onCollapse={(value) => setCollapsed(value)}
       width={280}
       style={{
@@ -33,7 +36,7 @@ const SideBar = () => {
     >
       <div
         style={{
-          color: "white",
+          // color: "white",
           fontSize: "2rem",
           textAlign: "center",
           fontWeight: "bold",
@@ -44,8 +47,11 @@ const SideBar = () => {
         Tutor Link
       </div>
       <Menu
-        theme="dark"
-        defaultSelectedKeys={["1"]}
+        // theme="dark"
+        // defaultSelectedKeys={[sidebarItems(role)[0]?.key]}
+        defaultSelectedKeys={["defaultSelectedKey"]}
+        defaultOpenKeys={["defaultOpenKey"]}
+        
         mode="inline"
         items={sidebarItems(role)}
       />

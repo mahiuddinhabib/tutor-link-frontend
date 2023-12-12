@@ -7,20 +7,32 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { isLoggedIn, removeUserInfo } from "@/services/auth.service";
+import {
+  getUserInfo,
+  isLoggedIn,
+  removeUserInfo,
+} from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import BrandIcon from "@/assets/icon.png";
 import Image from "next/image";
 import { useGetSubjectsQuery } from "@/redux/api/subjectApi";
 import Link from "next/link";
+import { USER_ROLE } from "@/constants/role";
 
 const { useToken } = theme;
 
 const Navbar = () => {
   const { data: subjects, isLoading } = useGetSubjectsQuery(undefined);
+  const { role } = getUserInfo() as any;
+
+  let dashboardLabel;
+  if (role === USER_ROLE.ADMIN) dashboardLabel = `/${role}/booking`;
+  else if (role === USER_ROLE.CUSTOMER) dashboardLabel = `/${role}/running`;
+  else if (role === USER_ROLE.SUPER_ADMIN) dashboardLabel = `/${role}/admin`;
+
   const item: MenuProps["items"] = [
     {
-      label: <Link href={`/profile`}>Dashboard</Link>,
+      label: <Link href={`${dashboardLabel}`}>Dashboard</Link>,
       key: "dashboard",
     },
     {
@@ -154,7 +166,7 @@ const Navbar = () => {
               paddingTop: 10,
               paddingBottom: 10,
               minWidth: "400px",
-              marginLeft: "10fpx",
+              marginLeft: "35px",
               borderBottom: "none",
               backgroundColor: "inherit",
             }}

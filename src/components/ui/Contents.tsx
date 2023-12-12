@@ -2,6 +2,7 @@
 import { Layout } from "antd";
 import Header from "./Header";
 import CustomNavbar from "./CustomNavbar";
+import Navbar from "./Navbar";
 
 const { Content } = Layout;
 
@@ -13,8 +14,7 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
         color: "black",
       }}
     >
-      <CustomNavbar />
-
+      {/* <Navbar /> */}
       <div
         style={{
           padding: "10px",

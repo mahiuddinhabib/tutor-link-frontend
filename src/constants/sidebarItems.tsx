@@ -1,12 +1,18 @@
 import type { MenuProps } from "antd";
 import {
-  ProfileOutlined,
-  TableOutlined,
+  UsergroupAddOutlined,
   AppstoreOutlined,
-  ScheduleOutlined,
-  ThunderboltOutlined,
-  CreditCardOutlined,
+  QuestionCircleOutlined,
   FileTextOutlined,
+  UserSwitchOutlined,
+  UserAddOutlined,
+  HistoryOutlined,
+  FieldTimeOutlined,
+  HourglassOutlined,
+  TeamOutlined,
+  SolutionOutlined,
+  BookOutlined,
+  DiffOutlined
 } from "@ant-design/icons";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
@@ -15,34 +21,16 @@ export const sidebarItems = (role: string) => {
     {
       label: "Profile",
       key: "profile",
-      icon: <ProfileOutlined />,
+      icon: <SolutionOutlined />,
       children: [
         {
           label: <Link href={`/${role}`}>Account Profile</Link>,
           key: `/${role}/profile`,
         },
-        // {
-        //   label: <Link href={`/${role}/change-password`}>Change Password</Link>,
-        //   key: `/${role}/change-password`,
-        // },
       ],
     },
   ];
 
-  /* 
-  const commonAdminSidebarItems: MenuProps["items"] = [
-    {
-      label: <Link href={`/${role}/manage-student`}>Manage Students</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/manage-student`,
-    },
-    {
-      label: <Link href={`/${role}/manage-faculty`}>Manage Faculty</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/manage-faculty`,
-    },
-  ];
- */
 
   const adminSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
@@ -50,36 +38,41 @@ export const sidebarItems = (role: string) => {
     {
       label: "Manage Users",
       key: "manage-users",
-      icon: <TableOutlined />,
+      icon: <TeamOutlined />,
       children: [
         {
           label: <Link href={`/${role}/customer`}>Customers</Link>,
           key: `/${role}/customer`,
+          // icon: <UserOutlined />,
         },
         {
           label: <Link href={`/${role}/tutor`}>Tutors</Link>,
           key: `/${role}/tutor`,
+          // icon: <UserOutlined />,
         },
       ],
     },
     {
       label: "Manage Services",
       key: "manage-service",
-      icon: <TableOutlined />,
+      icon: <AppstoreOutlined />,
       children: [
         {
           label: <Link href={`/${role}/service`}>Services</Link>,
           key: `/${role}/service`,
+          // icon: <PicCenterOutlined />,
         },
         {
           label: <Link href={`/${role}/service/create`}>Add New Service</Link>,
           key: `/${role}/service/create`,
+          // icon: <PlusSquareOutlined />,
         },
         {
           label: (
             <Link href={`/${role}/availableService`}>Available Services</Link>
           ),
           key: `/${role}/availableService`,
+          // icon: <ContainerOutlined />,
         },
         {
           label: (
@@ -88,42 +81,48 @@ export const sidebarItems = (role: string) => {
             </Link>
           ),
           key: `/${role}/availableService/create`,
+          // icon: <PlusCircleOutlined />,
         },
       ],
     },
     {
       label: "Manage Bookings",
-      key: "manage-bookings",
-      icon: <TableOutlined />,
+      key: "defaultOpenKey",
+      icon: <BookOutlined />,
       children: [
         {
           label: <Link href={`/${role}/booking`}>Bookings</Link>,
-          key: `/${role}/booking`,
+          key: `defaultSelectedKey`,
+          // icon: <InsertRowBelowOutlined />,
         },
         {
           label: <Link href={`/${role}/bookingRequest`}>Booking Requests</Link>,
           key: `/${role}/bookingRequest`,
+          // icon: <PullRequestOutlined />,
         },
         {
           label: (
             <Link href={`/${role}/bookingHistory`}>Booking Histories</Link>
           ),
           key: `/${role}/bookingHistory`,
+          // icon: <HistoryOutlined />,
         },
       ],
     },
     {
       label: "Manage Contents",
       key: "manage-contents",
-      icon: <TableOutlined />,
+      icon: <DiffOutlined />,
       children: [
         {
           label: <Link href={`/${role}/faq`}>FAQs</Link>,
           key: `/${role}/faq`,
+          icon: <QuestionCircleOutlined />,
         },
         {
           label: <Link href={`/${role}/blog`}>Blogs</Link>,
           key: `/${role}/blog`,
+          icon: <FileTextOutlined />,
         },
       ],
     },
@@ -134,18 +133,18 @@ export const sidebarItems = (role: string) => {
     // ...commonAdminSidebarItems,
     {
       label: "Manage Admin",
-      icon: <TableOutlined />,
-      key: "manage-admin",
+      icon: <TeamOutlined />,
+      key: "defaultOpenKey",
       children: [
         {
           label: <Link href={`/${role}/admin`}>Admins</Link>,
-          icon: <TableOutlined />,
-          key: `/${role}/admin`,
+          key: `defaultSelectedKey`,
+          // icon: <UserSwitchOutlined />,
         },
         {
           label: <Link href={`/${role}/permission`}>Manage Permission</Link>,
-          icon: <TableOutlined />,
           key: `/${role}/permission`,
+          // icon: <UserAddOutlined />,
         },
       ],
     },
@@ -155,23 +154,23 @@ export const sidebarItems = (role: string) => {
     ...defaultSidebarItems,
     {
       label: "Tuitions",
-      icon: <TableOutlined />,
-      key: `tuitions`,
+      key: `defaultOpenKey`,
+      icon: <BookOutlined />,
       children: [
         {
           label: <Link href={`/${role}/running`}>Running</Link>,
-          icon: <TableOutlined />,
-          key: `/${role}/running`,
+          key: `defaultSelectedKey`,
+          // icon: <FieldTimeOutlined />,
         },
         {
           label: <Link href={`/${role}/pending`}>Pending</Link>,
-          icon: <TableOutlined />,
           key: `/${role}/pending`,
+          // icon: <HourglassOutlined />,
         },
         {
           label: <Link href={`/${role}/history`}>History</Link>,
-          icon: <TableOutlined />,
           key: `/${role}/history`,
+          // icon: <HistoryOutlined />,
         },
       ],
     },
