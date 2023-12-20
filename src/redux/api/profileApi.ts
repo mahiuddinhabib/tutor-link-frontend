@@ -12,11 +12,21 @@ export const profileApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.profile],
     }),
     updateProfile: build.mutation({
-      query: (updatedData) => ({
-        url: `${PROFILE_URL}`,
-        method: "PATCH",
-        data: updatedData
-      }),
+      query: (updatedData) => {
+        const formData = new FormData();
+        const { profileImg, ...data } = updatedData;
+
+        formData.append("profileImg", profileImg);
+        formData.append("data", JSON.stringify(data));
+        // console.log(formData);
+
+        return {
+          url: `${PROFILE_URL}`,
+          method: "PATCH",
+          data: formData,
+          contentType: "multipart/form-data",
+        };
+      },
       invalidatesTags: [tagTypes.profile],
     }),
   }),

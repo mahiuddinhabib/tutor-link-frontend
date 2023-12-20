@@ -36,7 +36,7 @@ const SideBar = () => {
         bottom: 0,
       }}
     >
-      <Link style={{ textDecoration: "none", color:"black" }} href="/">
+      <Link style={{ textDecoration: "none", color: "black" }} href="/">
         <div
           style={{
             // color: "white",
@@ -68,6 +68,7 @@ const SideBar = () => {
         defaultSelectedKeys={["defaultSelectedKey"]}
         defaultOpenKeys={["defaultOpenKey"]}
         mode="inline"
+        style={{ borderRight: 0 }}
         items={sidebarItems(role)}
       />
     </Sider>
