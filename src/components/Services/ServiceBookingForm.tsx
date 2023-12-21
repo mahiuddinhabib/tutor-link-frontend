@@ -35,7 +35,7 @@ const ServiceBookingForm = ({
     return {
       label: service?.startTime,
       value: service?.id,
-      disabled: service?.isBooked,
+      disabled: service?.isBooked || service?.isRequested,
     };
   });
 

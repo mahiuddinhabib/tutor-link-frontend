@@ -103,20 +103,6 @@ const UpdateAdminProfile = ({ params }: any) => {
                   }}
                 >
                   <FormInput
-                    type="password"
-                    name="password"
-                    size="large"
-                    label="Password"
-                  />
-                </Col>
-                <Col
-                  className="gutter-row"
-                  span={24}
-                  style={{
-                    marginBottom: "10px",
-                  }}
-                >
-                  <FormInput
                     type="text"
                     name="contactNo"
                     size="large"

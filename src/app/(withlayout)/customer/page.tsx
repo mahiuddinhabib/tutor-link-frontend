@@ -31,7 +31,6 @@ const UpdateCustomerProfile = ({ params }: any) => {
   const defaultValues = {
     name: data?.name || "",
     email: data?.email || "",
-    password: data?.password || "",
     contactNo: data?.contactNo || "",
     address: data?.address || "",
     profileImg: data?.profileImg || "",
@@ -80,20 +79,6 @@ const UpdateCustomerProfile = ({ params }: any) => {
                   name="email"
                   size="large"
                   label="Email"
-                />
-              </Col>
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormInput
-                  type="password"
-                  name="password"
-                  size="large"
-                  label="Password"
                 />
               </Col>
               <Col
