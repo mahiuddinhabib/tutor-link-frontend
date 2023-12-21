@@ -27,7 +27,7 @@ const UpdateServicePage = ({ params }: { params: { serviceId: string } }) => {
         message.success("Service Updated!");
       }
     } catch (err: any) {
-      //   console.error(err.message);
+        message.error(err.message);
     }
   };
 

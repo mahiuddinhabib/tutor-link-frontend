@@ -29,7 +29,6 @@ const BookingRequestPage = () => {
         message.success("Status updated");
       }
     } catch (err: any) {
-      //   console.error(err.message);
       message.error(err.message);
     }
   };

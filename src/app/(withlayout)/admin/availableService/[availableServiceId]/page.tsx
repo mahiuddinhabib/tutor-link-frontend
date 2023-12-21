@@ -35,7 +35,7 @@ const UpdateAvailableServicePage = ({
         message.success("Available service updated!");
       }
     } catch (err: any) {
-      //   console.error(err.message);
+        message.error(err.message);
     }
   };
 

@@ -29,12 +29,11 @@ const PendingServicePage = () => {
         message.success("Booking Cancelled");
       }
     } catch (err: any) {
-      //   console.error(err.message);
       message.error(err.message);
     }
   };
 
-  console.log(pendingBooking);
+  // console.log(pendingBooking);
 
   const columns = [
     {

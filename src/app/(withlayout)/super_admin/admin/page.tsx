@@ -31,7 +31,6 @@ const AdminPage = () => {
         setOpen(false);
       }
     } catch (err: any) {
-      //   console.error(err.message);
       message.error(err.message);
     }
   };

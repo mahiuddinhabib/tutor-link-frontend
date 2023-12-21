@@ -39,7 +39,7 @@ const RegistrationPage = () => {
       message.success("Registration successful!");
       router.push("/login");
     } catch (err: any) {
-      console.error(err.message);
+      message.error(err.message);
     }
   };
 

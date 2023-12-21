@@ -24,7 +24,7 @@ const UpdateCustomerProfile = ({ params }: any) => {
         message.success("Admin Successfully Updated!");
       }
     } catch (err: any) {
-      console.error(err.message);
+      message.error(err.message);
     }
   };
 

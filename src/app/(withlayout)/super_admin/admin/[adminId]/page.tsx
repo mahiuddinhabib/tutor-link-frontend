@@ -26,7 +26,7 @@ const UpdateAdminPage = ({ params }: { params: { adminId: string } }) => {
         message.success("Admin Updated!");
       }
     } catch (err: any) {
-      //   console.error(err.message);
+        message.error(err.message);
     }
   };
 

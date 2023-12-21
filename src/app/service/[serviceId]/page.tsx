@@ -19,6 +19,7 @@ import {
   List,
   Rate,
   Row,
+  message,
   theme,
 } from "antd";
 import Image from "next/image";
@@ -83,7 +84,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
       }).unwrap();
       console.log(res);
     } catch (err: any) {
-      console.error(err.message);
+      message.error(err.message);
     }
     setRating(0);
   };

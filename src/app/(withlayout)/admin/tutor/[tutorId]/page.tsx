@@ -27,7 +27,6 @@ const UpdateTutorPage = ({ params }: { params: { tutorId: string } }) => {
       }
     } catch (err: any) {
       message.error(err.message);
-      // console.error(err.message);
     }
   };
 

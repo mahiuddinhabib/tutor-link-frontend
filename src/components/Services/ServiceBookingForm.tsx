@@ -54,7 +54,6 @@ const ServiceBookingForm = ({
       }
     } catch (err: any) {
       message.error(err.message);
-      // console.error(err.message);
     }
     setOpen(false);
   };

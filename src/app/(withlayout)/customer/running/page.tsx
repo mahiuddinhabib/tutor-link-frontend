@@ -31,7 +31,6 @@ const RunningServicePage = () => {
         message.success("Booking Completed");
       }
     } catch (err: any) {
-      //   console.error(err.message);
       message.error(err.message);
     }
   };

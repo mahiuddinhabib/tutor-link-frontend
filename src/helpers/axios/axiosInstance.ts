@@ -40,10 +40,13 @@ instance.interceptors.response.use(
   async function (error) {
     if (error?.response?.status === 403) {
     } else {
-      const responseObject: IGenericErrorResponse = {
-        statusCode: error?.response?.data?.statusCode || 500,
-        message: error?.response?.data?.message || "Something went wrong",
-        errorMessages: error?.response?.data?.message,
+      // console.log(error);
+      const responseObject:IGenericErrorResponse = {
+        error: {
+          statusCode: error?.response?.data?.statusCode || 500,
+          message: error?.response?.data?.message || "Something went wrong",
+          errorMessages: error?.response?.data?.message,
+        },
       };
       return responseObject;
     }

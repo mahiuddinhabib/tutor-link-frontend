@@ -29,6 +29,7 @@ const Navbar = () => {
   if (role === USER_ROLE.ADMIN) dashboardLabel = `/${role}/booking`;
   else if (role === USER_ROLE.CUSTOMER) dashboardLabel = `/${role}/running`;
   else if (role === USER_ROLE.SUPER_ADMIN) dashboardLabel = `/${role}/admin`;
+  else dashboardLabel = `/login`;
 
   const item: MenuProps["items"] = [
     {
@@ -75,6 +76,18 @@ const Navbar = () => {
             </Button>
           )}
         </>
+      ),
+    },
+    {
+      key: "1",
+      label: (
+        <Button
+          onClick={() => router.push(`${userLoggedIn ? `/${role}` : "/login"}`)}
+          type="text"
+        >
+          <UserOutlined />
+          Profile
+        </Button>
       ),
     },
   ];

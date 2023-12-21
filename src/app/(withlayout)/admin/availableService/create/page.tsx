@@ -42,7 +42,7 @@ const CreateAvailableServicePage = () => {
         message.success("Available Service Created!");
       }
     } catch (err: any) {
-      console.error(err.message);
+      message.error(err.message);
     }
   };
 

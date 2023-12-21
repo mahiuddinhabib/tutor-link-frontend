@@ -29,7 +29,7 @@ const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
         message.success("Customer Updated!");
       }
     } catch (err: any) {
-      // console.error(err.message);
+      message.error(err.message);
     }
   };
 
