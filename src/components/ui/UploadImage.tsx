@@ -27,9 +27,10 @@ const beforeUpload = (file: RcFile) => {
 type ImageUploadProps = {
   name: string;
   defaultImageUrl?: string;
+  listType?: UploadProps["listType"];
 };
 
-const UploadImage = ({ name, defaultImageUrl }: ImageUploadProps) => {
+const UploadImage = ({ name, defaultImageUrl, listType="picture-card" }: ImageUploadProps) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const { setValue } = useFormContext();
@@ -62,7 +63,7 @@ const UploadImage = ({ name, defaultImageUrl }: ImageUploadProps) => {
     <>
       <Upload
         name={name}
-        listType="picture-circle"
+        listType={listType}
         className="avatar-uploader"
         showUploadList={false}
         action="/api/file"

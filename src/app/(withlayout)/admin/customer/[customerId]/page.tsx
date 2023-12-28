@@ -10,7 +10,6 @@ import {
 import { Avatar, Button, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import React from "react";
-import UploadImage from "@/components/ui/UploadImage";
 
 const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
   const customerId = params.customerId;

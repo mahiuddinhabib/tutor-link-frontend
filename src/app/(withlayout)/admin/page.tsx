@@ -12,12 +12,11 @@ import {
 
 import { Button, Col, Row, message } from "antd";
 
-const UpdateAdminProfile = ({ params }: any) => {
+const UpdateAdminProfile = () => {
   const { data, isLoading: userLoading } = useGetProfileQuery(undefined);
   //   console.log(adminData);
   const [updateProfile, { isLoading: userUpdateLoading }] =
     useUpdateProfileMutation();
-  //@ts-ignore
 
   const onSubmit = async (values: any) => {
     try {
@@ -37,7 +36,7 @@ const UpdateAdminProfile = ({ params }: any) => {
     password: data?.password || "",
     contactNo: data?.contactNo || "",
     address: data?.address || "",
-    profileImg: data?.profileImg,
+    profileImg: data?.profileImg || "",
   };
 
   return (
@@ -54,7 +53,6 @@ const UpdateAdminProfile = ({ params }: any) => {
               padding: "15px",
               maxWidth: "500px",
               margin: "0px auto",
-              // boxShadow:" 0 0 10px rgba(0,0,0,0.1)",
             }}
           >
             <Form submitHandler={onSubmit} defaultValues={defaultValues}>
@@ -63,6 +61,7 @@ const UpdateAdminProfile = ({ params }: any) => {
                   <UploadImage
                     name="profileImg"
                     defaultImageUrl={defaultValues.profileImg}
+                    listType="picture-circle"
                   />
                 </div>
               </div>

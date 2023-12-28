@@ -2,8 +2,7 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import loginImage from "../../assets/login-image.png";
-
+import loginImage from "@/assets/login-img.png";
 import { useUpdateProfileMutation } from "@/redux/api/profileApi";
 
 import { Button, Col, Row, message } from "antd";

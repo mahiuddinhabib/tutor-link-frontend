@@ -3,6 +3,8 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import Header from "@/components/ui/Header";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import UploadImage from "@/components/ui/UploadImage";
 import {
   useGetProfileQuery,
   useUpdateProfileMutation,
@@ -10,16 +12,16 @@ import {
 
 import { Button, Col, Row, message } from "antd";
 
-const UpdateCustomerProfile = ({ params }: any) => {
-  const { data, isLoading } = useGetProfileQuery(undefined);
+const UpdateCustomerProfile = () => {
+  const { data, isLoading: userLoading } = useGetProfileQuery(undefined);
   //   console.log(adminData);
-  const [updateProfile] = useUpdateProfileMutation();
-  //@ts-ignore
+  const [updateProfile, { isLoading: userUpdateLoading }] =
+    useUpdateProfileMutation();
 
   const onSubmit = async (values: any) => {
     try {
       const res = await updateProfile(values).unwrap();
-      console.log(res);
+      // console.log(res);
       if (res?.id) {
         message.success("Profile Successfully Updated!");
       }
@@ -31,6 +33,7 @@ const UpdateCustomerProfile = ({ params }: any) => {
   const defaultValues = {
     name: data?.name || "",
     email: data?.email || "",
+    password: data?.password || "",
     contactNo: data?.contactNo || "",
     address: data?.address || "",
     profileImg: data?.profileImg || "",
@@ -38,84 +41,104 @@ const UpdateCustomerProfile = ({ params }: any) => {
 
   return (
     <div>
-      <Header title="Update Profile" />
-      <div style={{ padding: "10px" }}>
-        <Form submitHandler={onSubmit} defaultValues={defaultValues}>
+      <Header title="Your Profile" />
+      {userLoading || userUpdateLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div style={{ margin: "15px" }}>
           <div
             style={{
               border: "1px solid #d9d9d9",
               borderRadius: "5px",
               padding: "15px",
-              marginBottom: "10px",
+              maxWidth: "500px",
+              margin: "0px auto",
+              // boxShadow:" 0 0 10px rgba(0,0,0,0.1)",
             }}
           >
-            <p
-              style={{
-                fontSize: "18px",
-                marginBottom: "10px",
-              }}
-            >
-              Your Information
-            </p>
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-              <Col
-                className="gutter-row"
-                span={8}
+            <Form submitHandler={onSubmit} defaultValues={defaultValues}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ width: "100px" }}>
+                  <UploadImage
+                    name="profileImg"
+                    defaultImageUrl={defaultValues.profileImg}
+                    listType="picture-circle"
+                  />
+                </div>
+              </div>
+              <Row>
+                <Col
+                  className="gutter-row"
+                  span={24}
+                  style={{
+                    marginBottom: "10px",
+                  }}
+                >
+                  <FormInput
+                    type="text"
+                    name="name"
+                    size="large"
+                    label="name"
+                  />
+                </Col>
+                <Col
+                  className="gutter-row"
+                  span={24}
+                  style={{
+                    marginBottom: "10px",
+                  }}
+                >
+                  <FormInput
+                    type="email"
+                    name="email"
+                    size="large"
+                    label="Email"
+                  />
+                </Col>
+                <Col
+                  className="gutter-row"
+                  span={24}
+                  style={{
+                    marginBottom: "10px",
+                  }}
+                >
+                  <FormInput
+                    type="text"
+                    name="contactNo"
+                    size="large"
+                    label="Contact No"
+                  />
+                </Col>
+                <Col
+                  className="gutter-row"
+                  span={24}
+                  style={{
+                    marginBottom: "10px",
+                  }}
+                >
+                  <FormInput
+                    type="text"
+                    name="address"
+                    size="large"
+                    label="Address"
+                  />
+                </Col>
+              </Row>
+              <div
                 style={{
-                  marginBottom: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "10px",
                 }}
               >
-                <FormInput type="text" name="name" size="large" label="name" />
-              </Col>
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormInput
-                  type="email"
-                  name="email"
-                  size="large"
-                  label="Email"
-                />
-              </Col>
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormInput
-                  type="text"
-                  name="contactNo"
-                  size="large"
-                  label="Contact No"
-                />
-              </Col>
-              <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormInput
-                  type="text"
-                  name="address"
-                  size="large"
-                  label="Address"
-                />
-              </Col>
-            </Row>
+                <Button htmlType="submit" type="primary">
+                  Update
+                </Button>
+              </div>
+            </Form>
           </div>
-          <Button htmlType="submit" type="primary">
-            Update
-          </Button>
-        </Form>
-      </div>
+        </div>
+      )}
     </div>
   );
 };

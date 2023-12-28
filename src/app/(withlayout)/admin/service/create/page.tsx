@@ -8,8 +8,6 @@ import FormSelectField, {
 import Header from "@/components/ui/Header";
 import {
   useAddServiceMutation,
-  useSingleServiceQuery,
-  useUpdateServiceMutation,
 } from "@/redux/api/serviceApi";
 import { useGetSubjectsQuery } from "@/redux/api/subjectApi";
 import { useGetUsersQuery } from "@/redux/api/userApi";
@@ -42,7 +40,6 @@ const CreateServicePage = () => {
   console.log(subjectOptions);
 
   const [addService] = useAddServiceMutation();
-  //@ts-ignore
 
   const onSubmit = async (values: any) => {
     // console.log(values);
