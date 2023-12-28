@@ -1,5 +1,5 @@
 "use client";
-import { Button, Col, Input, Row, message } from "antd";
+import { Button, Col, Divider, Input, Row, message } from "antd";
 import loginImage from "@/assets/login-img.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
@@ -40,68 +40,93 @@ const LoginPage = () => {
   };
 
   return (
-    <Row
-      justify="center"
-      // gutter={48}
-      align="middle"
+    <div
       style={{
+        // backgroundColor: "red",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "0 15px",
       }}
     >
-      <Col md={12} lg={8} className="mobileHide">
-        <Image
-          src={loginImage}
-          width={500}
-          alt="login image"
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          maxWidth: "900px",
+        }}
+      >
+        <Col md={12} xs={0}>
+          <Image
+            src={loginImage}
+            width={500}
+            alt="login image"
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+            }}
+          />
+        </Col>
+        <Col
           style={{
-            maxWidth: "100%",
-            height: "auto",
+            padding: "30px",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "10px",
+            minHeight: "400px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            maxWidth: "400px",
           }}
-        />
-      </Col>
-      <Col md={8} lg={6}>
-        <h1
-          style={{
-            margin: "15px 0px",
-            textAlign:"center"
-          }}
+          sm={24}
+          md={12}
         >
-          Login your account
-        </h1>
-        <div>
-          <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
-            <div>
-              <FormInput
-                name="email"
-                type="email"
-                size="large"
-                label="Email"
-                required
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                name="password"
-                type="password"
-                size="large"
-                label="Password"
-                required
-              />
-            </div>
-            <Button type="primary" htmlType="submit">
-              Login
-            </Button>
-          </Form>
-          <p>
-            Don not have account yet? <Link href={'/register'}>Register here</Link>
-          </p>
-        </div>
-      </Col>
-    </Row>
+          <h1
+            style={{
+              marginBottom: "30px",
+              textAlign: "center",
+            }}
+          >
+            Login your account
+          </h1>
+          <div>
+            <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
+              <div>
+                <FormInput
+                  name="email"
+                  type="email"
+                  size="large"
+                  label="Email"
+                  required
+                />
+              </div>
+              <div
+                style={{
+                  margin: "25px 0px",
+                }}
+              >
+                <FormInput
+                  name="password"
+                  type="password"
+                  size="large"
+                  label="Password"
+                  required
+                />
+              </div>
+              <Button type="primary" htmlType="submit">
+                Login
+              </Button>
+            </Form>
+            <p style={{ marginTop: "10px" }}>
+              Don not have account yet?{" "}
+              <Link href={"/register"}>Register here</Link>
+            </p>
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

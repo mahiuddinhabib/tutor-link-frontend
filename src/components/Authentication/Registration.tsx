@@ -1,6 +1,6 @@
 "use client";
 import { Button, Col, Input, Row, message } from "antd";
-import loginImage from "../../assets/login-image.png";
+import registerImage from "@/assets/registration-img.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
@@ -44,98 +44,107 @@ const RegistrationPage = () => {
   };
 
   return (
-    <Row
-      justify="center"
-      align="middle"
+    <div
       style={{
+        // backgroundColor: "red",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "0 15px",
       }}
     >
-      <Col sm={12} md={16} lg={10}>
-        <Image src={loginImage} width={500} alt="login image" />
-      </Col>
-      <Col sm={12} md={8} lg={8}>
-        <h1
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          maxWidth: "900px",
+        }}
+      >
+        <Col md={12} xs={0}>
+          <Image
+            src={registerImage}
+            width={500}
+            alt="registration image"
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+            }}
+          />
+        </Col>
+        <Col
           style={{
-            margin: "15px 0px",
+            padding: "30px",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "10px",
+            minHeight: "400px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
           }}
+          sm={24}
+          md={12}
         >
-          First register your account
-        </h1>
-        <div>
-          <Form
-            submitHandler={onSubmit}
-            resolver={yupResolver(registrationSchema)}
+          <h1
+            style={{
+              marginBottom: "30px",
+              textAlign: "center",
+            }}
           >
-            <div>
-              <FormInput
-                name="name"
-                type="text"
-                size="large"
-                label="Name"
-                required
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
+            Register your account
+          </h1>
+          <div>
+            <Form
+              submitHandler={onSubmit}
+              resolver={yupResolver(registrationSchema)}
             >
-              <FormInput
-                name="email"
-                type="email"
-                size="large"
-                label="Email"
-                required
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                name="password"
-                type="password"
-                size="large"
-                label="Password"
-                required
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                name="contactNo"
-                type="text"
-                size="large"
-                label="Contact No"
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                name="address"
-                type="text"
-                size="large"
-                label="Address"
-              />
-            </div>
-            <Button type="primary" htmlType="submit">
-              Register
-            </Button>
-          </Form>
-          <p>
-            Already have account yet? <Link href={"/login"}>Login here</Link>
-          </p>
-        </div>
-      </Col>
-    </Row>
+              <div>
+                <FormInput
+                  name="name"
+                  type="text"
+                  size="large"
+                  label="Name"
+                  required
+                />
+              </div>
+              <div
+                style={{
+                  margin: "25px 0px",
+                }}
+              >
+                <FormInput
+                  name="email"
+                  type="email"
+                  size="large"
+                  label="Email"
+                  required
+                />
+              </div>
+              <div
+                style={{
+                  marginBottom: "25px",
+                }}
+              >
+                <FormInput
+                  name="password"
+                  type="password"
+                  size="large"
+                  label="Password"
+                  required
+                />
+              </div>
+              <Button type="primary" htmlType="submit">
+                Register
+              </Button>
+            </Form>
+            <p style={{ marginTop: "10px" }}>
+              Already have account yet? <Link href={"/login"}>Login here</Link>
+            </p>
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 };
 
