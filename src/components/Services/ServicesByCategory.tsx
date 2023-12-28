@@ -40,37 +40,57 @@ const ServicesByCategory = () => {
         className="container"
         style={{ margin: "0 auto" }}
       >
-        {subjects?.map((subject: any) => (
-          <Col
-            xs={24}
-            md={8}
-            lg={6}
-            key={subject?.id}
-            style={{ justifyContent: "center", alignItems: "center" }}
-          >
-            <Link href={`/subject/${subject?.id}`}>
-              <Card
-                hoverable
-                // bordered
-                style={{
-                  maxWidth: 500,
-                  // height: 150,
-                  // borderColor: token.colorPrimaryBorderHover,
-                  border: "none",
-                  textAlign: "center",
-                  padding: "30px",
-                  backgroundColor: token.colorPrimaryBorder,
-                  margin: "0 auto",
-                  color: token.colorSuccessActive,
-                }}
+        {isLoading
+          ? [...Array(4)].map((_, i) => (
+              <Col
+                key={i}
+                xs={24}
+                md={8}
+                lg={6}
+                style={{ justifyContent: "center", alignItems: "center" }}
               >
-                <h2 style={{ fontSize: token.fontSizeHeading3 }}>
-                  {subject?.title}
-                </h2>
-              </Card>
-            </Link>
-          </Col>
-        ))}
+                <Card
+                  loading
+                  style={{
+                    maxWidth: 500,
+                    backgroundColor: token.colorPrimaryBorder,
+                    // margin: "0 auto",
+                    color: token.colorSuccessActive,
+                  }}
+                ></Card>
+              </Col>
+            ))
+          : subjects?.map((subject: any) => (
+              <Col
+                xs={24}
+                md={8}
+                lg={6}
+                key={subject?.id}
+                style={{ justifyContent: "center", alignItems: "center" }}
+              >
+                <Link href={`/subject/${subject?.id}`}>
+                  <Card
+                    hoverable
+                    // bordered
+                    style={{
+                      maxWidth: 500,
+                      // height: 150,
+                      // borderColor: token.colorPrimaryBorderHover,
+                      border: "none",
+                      textAlign: "center",
+                      padding: "30px",
+                      backgroundColor: token.colorPrimaryBorder,
+                      margin: "0 auto",
+                      color: token.colorSuccessActive,
+                    }}
+                  >
+                    <h2 style={{ fontSize: token.fontSizeHeading3 }}>
+                      {subject?.title}
+                    </h2>
+                  </Card>
+                </Link>
+              </Col>
+            ))}
       </Row>
     </div>
   );
