@@ -117,3 +117,14 @@
     text-align: start;
   }
 }
+
+@media (max-width: 476px) {
+  .mobileHide {
+    display: none;
+  }
+}
+@media (min-width: 476px)  {
+  .mobileHide {
+    display: block;
+  }
+}

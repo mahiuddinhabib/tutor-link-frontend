@@ -4,15 +4,10 @@ import {
   AppstoreOutlined,
   QuestionCircleOutlined,
   FileTextOutlined,
-  UserSwitchOutlined,
-  UserAddOutlined,
-  HistoryOutlined,
-  FieldTimeOutlined,
-  HourglassOutlined,
   TeamOutlined,
   SolutionOutlined,
   BookOutlined,
-  DiffOutlined
+  DiffOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
@@ -25,12 +20,15 @@ export const sidebarItems = (role: string) => {
       children: [
         {
           label: <Link href={`/${role}`}>Account Profile</Link>,
-          key: `/${role}/profile`,
+          key: `profile`,
+        },
+        {
+          label: <Link href={`/${role}/changePassword`}>Change Password</Link>,
+          key: `changePassword`,
         },
       ],
     },
   ];
-
 
   const adminSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,

@@ -24,7 +24,7 @@ const UpdateAdminProfile = ({ params }: any) => {
       const res = await updateProfile(values).unwrap();
       // console.log(res);
       if (res?.id) {
-        message.success("Admin Successfully Updated!");
+        message.success("Profile Successfully Updated!");
       }
     } catch (err: any) {
       message.error(err.message);

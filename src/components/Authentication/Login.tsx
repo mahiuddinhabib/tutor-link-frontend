@@ -1,6 +1,6 @@
 "use client";
 import { Button, Col, Input, Row, message } from "antd";
-import loginImage from "../../assets/login-image.png";
+import loginImage from "@/assets/login-img.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
@@ -42,21 +42,31 @@ const LoginPage = () => {
   return (
     <Row
       justify="center"
+      // gutter={48}
       align="middle"
       style={{
         minHeight: "100vh",
       }}
     >
-      <Col sm={12} md={16} lg={10}>
-        <Image src={loginImage} width={500} alt="login image" />
+      <Col md={12} lg={8} className="mobileHide">
+        <Image
+          src={loginImage}
+          width={500}
+          alt="login image"
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+          }}
+        />
       </Col>
-      <Col sm={12} md={8} lg={8}>
+      <Col md={8} lg={6}>
         <h1
           style={{
             margin: "15px 0px",
+            textAlign:"center"
           }}
         >
-          First login your account
+          Login your account
         </h1>
         <div>
           <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>

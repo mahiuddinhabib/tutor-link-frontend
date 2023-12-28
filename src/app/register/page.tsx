@@ -1,4 +1,4 @@
-import RegistrationPage from "@/components/Registration/Registration";
+import RegistrationPage from "@/components/Authentication/Registration";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

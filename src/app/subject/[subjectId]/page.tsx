@@ -14,7 +14,7 @@ const CategorizedServices = ({ params }: { params: { subjectId: string } }) => {
   const subjectId = params.subjectId;
 
   const { data, isLoading } = useServicesBySubjectQuery(subjectId);
-  // console.log(data);
+ 
   return (
     <div>
       <Navbar />

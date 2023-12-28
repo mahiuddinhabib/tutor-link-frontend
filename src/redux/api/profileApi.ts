@@ -29,7 +29,19 @@ export const profileApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.profile],
     }),
+    changePassword: build.mutation({
+      query: (updatedPassword) => ({
+        url: `${PROFILE_URL}/change-password`,
+        method: "PATCH",
+        data: updatedPassword,
+      }),
+      invalidatesTags: [tagTypes.profile],
+    }),
   }),
 });
 
-export const { useGetProfileQuery, useUpdateProfileMutation } = profileApi;
+export const {
+  useGetProfileQuery,
+  useUpdateProfileMutation,
+  useChangePasswordMutation,
+} = profileApi;
