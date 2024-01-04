@@ -21,7 +21,7 @@ const ClickableCard = ({ service }: { service: any }) => {
         }}
         cover={
           <Image
-            src={CardImg}
+            src={service?.coverImg || CardImg}
             width={0}
             height={0}
             sizes="100vw"

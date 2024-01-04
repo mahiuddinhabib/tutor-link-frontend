@@ -9,7 +9,7 @@ export const registrationSchema = yup.object().shape({
     .max(16, "maximum 16")
     .required("Name is required"),
   // role: yup.string().required("Role is required"),
-  contactNo: yup.string(),
-  address: yup.string(),
-  profileImg: yup.string(),
+  // contactNo: yup.string(),
+  // address: yup.string(),
+  // profileImg: yup.string(),
 });

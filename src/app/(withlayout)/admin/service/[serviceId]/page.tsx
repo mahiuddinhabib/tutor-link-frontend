@@ -3,11 +3,13 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import Header from "@/components/ui/Header";
+import UploadImage from "@/components/ui/UploadImage";
 import {
   useSingleServiceQuery,
   useUpdateServiceMutation,
 } from "@/redux/api/serviceApi";
 import { Button, message } from "antd";
+import Image from "next/image";
 import React from "react";
 
 const UpdateServicePage = ({ params }: { params: { serviceId: string } }) => {
@@ -17,7 +19,6 @@ const UpdateServicePage = ({ params }: { params: { serviceId: string } }) => {
   //   console.log(serviceData);
 
   const [updateService] = useUpdateServiceMutation();
-  //@ts-ignore
 
   const onSubmit = async (values: any) => {
     try {
@@ -49,6 +50,20 @@ const UpdateServicePage = ({ params }: { params: { serviceId: string } }) => {
               marginBottom: "10px",
             }}
           >
+            <div
+              style={{
+                margin: "15px 0px",
+              }}
+            >
+              <Image
+              src={serviceData?.coverImg || "/common-card-img.jpeg"}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto", borderRadius: "5px" }}
+              alt="card image"
+              />
+            </div>
             <div
               style={{
                 margin: "15px 0px",

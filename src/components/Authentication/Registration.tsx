@@ -16,9 +16,9 @@ type FormValues = {
   name: string;
   email: string;
   password: string;
-  contactNo: string | undefined;
-  address: string | undefined;
-  profileImg: string | undefined;
+  // contactNo: string | undefined;
+  // address: string | undefined;
+  // profileImg: string | undefined;
 };
 
 const RegistrationPage = () => {
@@ -30,13 +30,10 @@ const RegistrationPage = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     // console.log(data);
     try {
-      const res = await userRegistration({
-        ...data,
-        role: "customer",
-        profileImg: "",
-      });
-      console.log(res);
+      const res = await userRegistration(data).unwrap();
+      // console.log(res);
       message.success("Registration successful!");
+      message.success("Now login to your account!");
       router.push("/login");
     } catch (err: any) {
       message.error(err.message);

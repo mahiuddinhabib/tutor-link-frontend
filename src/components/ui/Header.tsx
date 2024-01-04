@@ -3,10 +3,14 @@ import { UserOutlined } from "@ant-design/icons";
 import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
+import { useGetProfileQuery } from "@/redux/api/profileApi";
+import commonProfileImg from "@/assets/profile.png";
+import Image from "next/image";
 const { Header: AntHeader } = Layout;
 
-const Header = ({title}:{title:string}) => {
+const Header = ({ title }: { title: string }) => {
   const router = useRouter();
+  const { data, isLoading: userLoading } = useGetProfileQuery(undefined);
 
   const logOut = () => {
     removeUserInfo(authKey);
@@ -38,12 +42,19 @@ const Header = ({title}:{title:string}) => {
           height: "100%",
         }}
       >
-        <span/>
+        <span />
         <h2>{title}</h2>
         <Dropdown menu={{ items }}>
           <a>
             <Space wrap size={16}>
-              <Avatar size="large" icon={<UserOutlined />} />
+              <Avatar
+                size="large"
+                src={
+                  data?.profileImg || (
+                    <Image src={commonProfileImg} alt="BrandIcon" />
+                  )
+                }
+              />
             </Space>
           </a>
         </Dropdown>

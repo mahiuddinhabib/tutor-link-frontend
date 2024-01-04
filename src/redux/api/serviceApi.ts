@@ -6,17 +6,24 @@ const SERVICE_URL = "/services";
 
 export const serviceApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    // create ac semester endpoint
     addService: build.mutation({
-      query: (data) => ({
-        url: `${SERVICE_URL}/create-service`,
-        method: "POST",
-        data,
-      }),
+      query: (serviceData) => {
+        const formData = new FormData();
+        const { coverImg, ...data } = serviceData;
+
+        formData.append("coverImg", coverImg);
+        formData.append("data", JSON.stringify(data));
+        // console.log(formData);
+
+        return {
+          url: `${SERVICE_URL}/create-service`,
+          method: "POST",
+          data: formData,
+          contentType: "multipart/form-data",
+        };
+      },
       invalidatesTags: [tagTypes.service],
     }),
-
-    // get all ac semesters endpoint
     services: build.query({
       query: (arg: Record<string, any>) => {
         return {

@@ -17,8 +17,9 @@ const ReviewCarousel = () => {
           textAlign: "center",
           marginBottom: "50px",
           fontSize: token.fontSizeHeading2,
-          color:token.colorTextSecondary
-        }}>
+          color: token.colorTextSecondary,
+        }}
+      >
         See What Others Say
       </h1>
       <Carousel autoplay autoplaySpeed={3000} dots={false}>
@@ -42,7 +43,7 @@ const ReviewCarousel = () => {
               }}
             >
               <Image
-                src={profileImg}
+                src={f?.user?.profileImg || profileImg}
                 height={100}
                 width={100}
                 alt="USER"
@@ -52,11 +53,9 @@ const ReviewCarousel = () => {
                   display: "inline",
                 }}
               />
-              <h3 style={{marginBottom:"10px"}}>{f?.user?.name}</h3>
+              <h3 style={{ marginBottom: "10px" }}>{f?.user?.name}</h3>
               <Rate disabled value={f?.rating} />
-              <p>
-                {f?.review}
-              </p>
+              <p>{f?.review}</p>
             </div>
           </div>
         ))}

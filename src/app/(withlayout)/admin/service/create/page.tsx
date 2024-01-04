@@ -2,13 +2,13 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import ImgCrop from "antd-img-crop";
 import FormSelectField, {
   SelectOptions,
 } from "@/components/Forms/FormSelectField";
 import Header from "@/components/ui/Header";
-import {
-  useAddServiceMutation,
-} from "@/redux/api/serviceApi";
+import UploadImage from "@/components/ui/UploadImage";
+import { useAddServiceMutation } from "@/redux/api/serviceApi";
 import { useGetSubjectsQuery } from "@/redux/api/subjectApi";
 import { useGetUsersQuery } from "@/redux/api/userApi";
 import { serviceSchema } from "@/schemas/service";
@@ -17,24 +17,24 @@ import { Button, message } from "antd";
 import React from "react";
 
 const CreateServicePage = () => {
-
   const { data: users, isLoading: isUserLoading } = useGetUsersQuery(undefined);
-  const {data: subjects, isLoading: isSubjectLoading} = useGetSubjectsQuery(undefined)
+  const { data: subjects, isLoading: isSubjectLoading } =
+    useGetSubjectsQuery(undefined);
   //   console.log(serviceData);
   const tutors = users?.filter((b: any) => b.role === "tutor");
 
   const tutorOptions = tutors?.map((user: any) => {
-      return {
-        label: user?.name,
-        value: user?.id,
-      };
+    return {
+      label: user?.name,
+      value: user?.id,
+    };
   });
 
   const subjectOptions = subjects?.map((subject: any) => {
-      return {
-        label: subject?.title,
-        value: subject?.id,
-      };
+    return {
+      label: subject?.title,
+      value: subject?.id,
+    };
   });
 
   console.log(subjectOptions);
@@ -45,12 +45,12 @@ const CreateServicePage = () => {
     // console.log(values);
     try {
       const res = await addService(values).unwrap();
-      console.log(res);
+      // console.log(res);
       if (res?.id) {
-        message.success("Service Created!");
+        message.success("Service Created Successfully!");
       }
     } catch (err: any) {
-        message.error(err.message);
+      message.error(err.message);
     }
   };
 
@@ -58,7 +58,7 @@ const CreateServicePage = () => {
     <div>
       <Header title="Create New Service" />
 
-      <div style={{ margin: "auto", width: "50%", padding:"10px" }}>
+      <div style={{ margin: "auto", width: "50%", padding: "10px" }}>
         <Form submitHandler={onSubmit} resolver={yupResolver(serviceSchema)}>
           <div
             style={{
@@ -68,6 +68,17 @@ const CreateServicePage = () => {
               marginBottom: "10px",
             }}
           >
+            <div
+              style={{
+                margin: "15px 0px",
+              }}
+            >
+              <UploadImage
+                name="coverImg"
+                listType="picture-card"
+                aspect={4 / 3}
+              />
+            </div>
             <div
               style={{
                 margin: "15px 0px",
@@ -112,7 +123,13 @@ const CreateServicePage = () => {
                 margin: "15px 0px",
               }}
             >
-              <FormInput type="text" name="price" size="large" label="Price" required/>
+              <FormInput
+                type="text"
+                name="price"
+                size="large"
+                label="Price"
+                required
+              />
             </div>
           </div>
           <Button htmlType="submit" type="primary">

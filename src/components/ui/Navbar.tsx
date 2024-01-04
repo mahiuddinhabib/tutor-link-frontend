@@ -4,6 +4,7 @@ import {
   UserOutlined,
   LogoutOutlined,
   LoginOutlined,
+  ProfileOutlined
 } from "@ant-design/icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -18,10 +19,13 @@ import Image from "next/image";
 import { useGetSubjectsQuery } from "@/redux/api/subjectApi";
 import Link from "next/link";
 import { USER_ROLE } from "@/constants/role";
+import { useGetProfileQuery } from "@/redux/api/profileApi";
+import commonProfileImg from "@/assets/profile.png";
 
 const { useToken } = theme;
 
 const Navbar = () => {
+  const { data, isLoading: userLoading } = useGetProfileQuery(undefined);
   const { data: subjects, isLoading } = useGetSubjectsQuery(undefined);
   const { role } = getUserInfo() as any;
 
@@ -132,9 +136,13 @@ const Navbar = () => {
         </Link>
         <Dropdown menu={{ items }}>
           <Avatar
-            style={{ marginRight: 15 }}
+            style={{ marginRight: 15, border: "1px solid #d9d9d9" }}
             size="large"
-            icon={<UserOutlined />}
+            src={
+              data?.profileImg || (
+                <Image src={commonProfileImg} alt="BrandIcon" />
+              )
+            }
           />
         </Dropdown>
       </div>
@@ -189,9 +197,14 @@ const Navbar = () => {
           <Avatar
             style={{
               marginRight: 15,
+              border: "1px solid #d9d9d9",
             }}
             size="large"
-            icon={<UserOutlined />}
+            src={
+              data?.profileImg || (
+                <Image src={commonProfileImg} alt="BrandIcon" />
+              )
+            }
           />
         </Dropdown>
       </div>

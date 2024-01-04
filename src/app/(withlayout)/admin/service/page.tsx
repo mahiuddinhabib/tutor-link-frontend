@@ -10,8 +10,8 @@ import Link from "next/link";
 import CustomModal from "@/components/ui/CustomModal";
 import Header from "@/components/ui/Header";
 import { ExclamationCircleFilled } from "@ant-design/icons";
+import Image from "next/image";
 const { useToken } = theme;
-
 
 const ServicePage = () => {
   const { token } = useToken();
@@ -52,7 +52,20 @@ const ServicePage = () => {
   const columns = [
     {
       title: "Title",
-      dataIndex: "title",
+      render: function (data: any) {
+        return (
+          <span style={{display:"flex", justifyContent:"start", alignItems:"center", gap:"10px"}}>
+            <Image
+              src={data?.coverImg}
+              width={40}
+              height={30}
+              style={{borderRadius: "5px" }}
+              alt="card image"
+            />
+            {data?.title}
+          </span>
+        );
+      },
     },
     {
       title: "Price",

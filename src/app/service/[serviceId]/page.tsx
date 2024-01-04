@@ -36,12 +36,6 @@ import { isLoggedIn } from "@/services/auth.service";
 import { redirect } from "next/navigation";
 import { useGetFAQsQuery } from "@/redux/api/faqApi";
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
 const { Meta } = Card;
 const { useToken } = theme;
 
@@ -121,7 +115,12 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
               avatar={
                 <Avatar
                   size={60}
-                  src={<Image src={commonProfileImg} alt="tutor profile" />}
+                  src={
+                    (availableServices &&
+                      availableServices[0]?.service?.tutor?.profileImg) || (
+                      <Image src={commonProfileImg} alt="tutor profile" />
+                    )
+                  }
                 />
               }
               title={
@@ -145,13 +144,11 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
           <Collapse
             accordion
             defaultActiveKey="0"
-            items={
-                FAQs?.map((faq:any, index: number) => ({
-                key: index,
-                label: faq?.question,
-                children: faq?.answer,
-              }))
-            }
+            items={FAQs?.map((faq: any, index: number) => ({
+              key: index,
+              label: faq?.question,
+              children: faq?.answer,
+            }))}
           />
 
           <Card style={{ textAlign: "center", marginTop: token.sizeXL }}>
@@ -193,7 +190,11 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                 <List.Item.Meta
                   avatar={
                     <Avatar
-                      src={<Image src={commonProfileImg} alt="tutor profile" />}
+                      src={
+                        item?.user?.profileImg || (
+                          <Image src={commonProfileImg} alt="tutor profile" />
+                        )
+                      }
                     />
                   }
                   title={item?.user?.name}
@@ -202,6 +203,7 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
                       <Rate
                         style={{ fontSize: token.fontSize, color: "inherit" }}
                         value={item?.rating}
+                        disabled
                       />{" "}
                       <br />
                       {item?.review}
@@ -219,7 +221,11 @@ const ServiceBooking = ({ params }: { params: { serviceId: string } }) => {
             }}
             cover={
               <Image
-                src={commonCardImg}
+                src={
+                  (availableServices &&
+                    availableServices[0]?.service?.coverImg) ||
+                  commonCardImg
+                }
                 width={0}
                 height={0}
                 sizes="100vw"
