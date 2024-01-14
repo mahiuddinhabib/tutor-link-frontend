@@ -28,7 +28,7 @@ export const subjectApi = baseApi.injectEndpoints({
 
     // get single ac semester endpoint
     singleSubject: build.query({
-      query: (id: string | string[] | undefined) => ({
+      query: (id: string) => ({
         url: `${SUBJECT_URL}/${id}`,
         method: "GET",
       }),

@@ -2,7 +2,6 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import ImgCrop from "antd-img-crop";
 import FormSelectField, {
   SelectOptions,
 } from "@/components/Forms/FormSelectField";
@@ -20,7 +19,6 @@ const CreateServicePage = () => {
   const { data: users, isLoading: isUserLoading } = useGetUsersQuery(undefined);
   const { data: subjects, isLoading: isSubjectLoading } =
     useGetSubjectsQuery(undefined);
-  //   console.log(serviceData);
   const tutors = users?.filter((b: any) => b.role === "tutor");
 
   const tutorOptions = tutors?.map((user: any) => {
@@ -37,15 +35,11 @@ const CreateServicePage = () => {
     };
   });
 
-  console.log(subjectOptions);
-
   const [addService] = useAddServiceMutation();
 
   const onSubmit = async (values: any) => {
-    // console.log(values);
     try {
       const res = await addService(values).unwrap();
-      // console.log(res);
       if (res?.id) {
         message.success("Service Created Successfully!");
       }

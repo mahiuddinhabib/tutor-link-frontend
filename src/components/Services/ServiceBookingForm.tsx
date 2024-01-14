@@ -13,6 +13,8 @@ import {
 } from "@/redux/api/profileApi";
 import FormSelectField from "../Forms/FormSelectField";
 import { useAddBookingMutation } from "@/redux/api/bookingApi";
+import { useRouter } from "next/navigation";
+import { getUserInfo } from "@/services/auth.service";
 
 const ServiceBookingForm = ({
   //   customerId,
@@ -26,10 +28,10 @@ const ServiceBookingForm = ({
   availableServices: any;
 }) => {
   const { data: userData, isLoading } = useGetProfileQuery(undefined);
-  //   console.log(adminData);
   const [updateProfile] = useUpdateProfileMutation();
-
   const [addBooking] = useAddBookingMutation();
+
+  const router = useRouter();
 
   const scheduleOptions = availableServices?.map((service: any) => {
     return {
@@ -41,17 +43,23 @@ const ServiceBookingForm = ({
 
   const onSubmit = async (values: any) => {
     const { availableServiceId, ...userData } = values;
-    console.log(availableServiceId, userData);
+    // console.log(availableServiceId, userData);
 
     try {
-      await updateProfile(userData).unwrap();
-      const res = await addBooking({
-        availableServiceId,
-      }).unwrap();
-      console.log(res);
-      if (res?.id) {
-        message.success("Profile Updated!");
+      const userRes = await updateProfile(userData).unwrap();
+      if (userRes?.id) {
+        const bookingRes = await await addBooking({
+          availableServiceId,
+        }).unwrap();
+        if (bookingRes?.id) {
+          message.success("Booking Request Placed!");
+          router.push("/customer/pending");
+        }
       }
+      // console.log(res);
+      // if (res?.id) {
+      //   message.success("Profile Updated!");
+      // }
     } catch (err: any) {
       message.error(err.message);
     }

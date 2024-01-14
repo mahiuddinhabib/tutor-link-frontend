@@ -8,6 +8,7 @@ import {
   useUpdateAvailableServiceMutation,
 } from "@/redux/api/availableServiceApi";
 import { Button, message } from "antd";
+import Image from "next/image";
 import React from "react";
 
 const UpdateAvailableServicePage = ({
@@ -44,7 +45,7 @@ const UpdateAvailableServicePage = ({
   };
   return (
     <div>
-      <Header title="Update Available Service" />
+      <Header title="Update Tuition Schedule" />
 
       <div style={{ margin: "auto", width: "50%", padding: "10px" }}>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
@@ -56,6 +57,21 @@ const UpdateAvailableServicePage = ({
               marginBottom: "10px",
             }}
           >
+            <div
+              style={{
+                margin: "15px 0px",
+              }}
+            >
+              <Image
+                src={availableServiceData?.service?.coverImg || "/common-card-img.jpeg"}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", borderRadius: "5px" }}
+                alt="card image"
+              />
+              <h2 style={{textAlign:"center"}}>{availableServiceData?.service?.title}</h2>
+            </div>
             <div
               style={{
                 margin: "15px 0px",

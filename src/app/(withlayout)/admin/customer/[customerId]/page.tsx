@@ -8,8 +8,9 @@ import {
   useUpdateUserMutation,
 } from "@/redux/api/userApi";
 import { Avatar, Button, message } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import React from "react";
+import commonProfileImg from "@/assets/profile.png";
+import Image from "next/image";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
   const customerId = params.customerId;
@@ -17,7 +18,7 @@ const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
   const { data: customerData, isLoading } = useGetSingleUserQuery(customerId);
   //   console.log(customerData);
 
-  const [updateUser] = useUpdateUserMutation();
+  const [updateUser, {isLoading: isUpdateLoading}] = useUpdateUserMutation();
   //@ts-ignore
 
   const onSubmit = async (values: any) => {
@@ -43,79 +44,92 @@ const UpdateCustomerPage = ({ params }: { params: { customerId: string } }) => {
     <div>
       <Header title="Update Customer" />
 
-      <div style={{ margin: "auto", maxWidth: "500px", padding: "10px" }}>
-        <Form submitHandler={onSubmit} defaultValues={defaultValues}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: "10px",
-            }}
-          >
-            <Avatar
-              size={100}
-              icon={<UserOutlined />}
-              // src={customerData?.profileImg}
-            />
-          </div>
-          <div
-            style={{
-              border: "1px solid #d9d9d9",
-              borderRadius: "5px",
-              padding: "15px",
-              marginBottom: "10px",
-            }}
-          >
+      {isLoading || isUpdateLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div style={{ margin: "auto", maxWidth: "500px", padding: "10px" }}>
+          <Form submitHandler={onSubmit} defaultValues={defaultValues}>
             <div
               style={{
-                margin: "15px 0px",
+                border: "1px solid #d9d9d9",
+                borderRadius: "5px",
+                padding: "15px",
+                marginBottom: "10px",
               }}
             >
-              <FormInput type="text" name="name" size="large" label="Name" />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <Avatar
+                  size={100}
+                  // icon={<UserOutlined />}
+                  src={
+                    customerData?.profileImg || (
+                      <Image src={commonProfileImg} alt="customer profile" />
+                    )
+                  }
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput type="text" name="name" size="large" label="Name" />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput
+                  type="email"
+                  name="email"
+                  size="large"
+                  label="Email"
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput
+                  type="text"
+                  name="contactNo"
+                  size="large"
+                  label="Contact No"
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput
+                  type="text"
+                  name="address"
+                  size="large"
+                  label="Address"
+                />
+              </div>
             </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput type="email" name="email" size="large" label="Email" />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                htmlType="submit"
+                type="primary"
+                style={{ margin: "0 auto" }}
+              >
+                Update
+              </Button>
             </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                type="text"
-                name="contactNo"
-                size="large"
-                label="Contact No"
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                type="text"
-                name="address"
-                size="large"
-                label="Address"
-              />
-            </div>
-          </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Button
-              htmlType="submit"
-              type="primary"
-              style={{ margin: "0 auto" }}
-            >
-              Update
-            </Button>
-          </div>
-        </Form>
-      </div>
+          </Form>
+        </div>
+      )}
     </div>
   );
 };

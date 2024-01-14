@@ -12,12 +12,10 @@ const BookingHistoryPage = () => {
   const { data: bookingHistory, isLoading } =
     useGetBookingHistoryQuery(undefined);
 
-  console.log(bookingHistory);
-
   const columns = [
     {
-      title: "Available Service ID",
-      dataIndex: "availableServiceId",
+      title: "Service",
+      dataIndex: "serviceTitle",
     },
     {
       title: "Status",

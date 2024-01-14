@@ -5,13 +5,14 @@ import CardImg from "@/assets/common-card-img.jpeg";
 
 const { Meta } = Card;
 
-const ClickableCard = ({ service }: { service: any }) => {
+const ClickableCard = ({ service, loading }: { service: any, loading?:boolean }) => {
   // const {href, service} = props;
   // console.log(service);
   return (
     <Link href={`/service/${service?.id}`}>
       <Card
         hoverable
+        loading={loading}
         style={{
           minHeight: "400px",
           maxWidth: 500,

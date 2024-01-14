@@ -8,8 +8,6 @@ import Header from "@/components/ui/Header";
 const BookingPage = () => {
   const { data: booking, isLoading } = useGetBookingsQuery(undefined);
 
-  console.log(booking);
-
   const columns = [
     {
       title: "Service",

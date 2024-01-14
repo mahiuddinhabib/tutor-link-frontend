@@ -10,17 +10,14 @@ import Header from "@/components/ui/Header";
 
 const BookingRequestPage = () => {
   const { data: booking, isLoading } = useGetBookingsQuery(undefined);
-  console.log(booking);
 
   const requestedBooking = booking?.filter((b: any) => b.status === "pending");
-  console.log(requestedBooking);
 
   const [updateBookingStatus] = useUpdateBookingStatusMutation();
 
   const updateStatusHandler = async (id: string, status: string) => {
     message.loading("Updating.....");
     try {
-      //   console.log(data);
       const res = await updateBookingStatus({
         id,
         body: { status },
