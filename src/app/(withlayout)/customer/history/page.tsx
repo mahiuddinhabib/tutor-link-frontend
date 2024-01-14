@@ -12,8 +12,8 @@ const ServiceHistoryPage = () => {
 
   const columns = [
     {
-      title: "Service Id",
-      dataIndex: "availableServiceId",
+      title: "Service",
+      dataIndex: "serviceTitle",
     },
     {
       title: "Status",

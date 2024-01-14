@@ -1,5 +1,5 @@
 "use client";
-import { Button, Col, Divider, Input, Row, message } from "antd";
+import { Button, Col, Divider, Input, Radio, Row, message } from "antd";
 import loginImage from "@/assets/login-img.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas/login";
 import Link from "next/link";
+import { useState } from "react";
 
 type FormValues = {
   email: string;
@@ -18,6 +19,10 @@ type FormValues = {
 };
 
 const LoginPage = () => {
+  const [defaultValues, setDefaultValues] = useState<FormValues>({
+    email: "",
+    password: "",
+  });
   const [userLogin] = useUserLoginMutation();
   const router = useRouter();
 
@@ -92,7 +97,11 @@ const LoginPage = () => {
             Login your account
           </h1>
           <div>
-            <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
+            <Form
+              submitHandler={onSubmit}
+              defaultValues={defaultValues}
+              resolver={yupResolver(loginSchema)}
+            >
               <div>
                 <FormInput
                   name="email"
@@ -123,6 +132,43 @@ const LoginPage = () => {
               Don not have account yet?{" "}
               <Link href={"/register"}>Register here</Link>
             </p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "20px",
+              }}
+            >
+              <Radio.Group
+                value={defaultValues}
+                onChange={(e) => setDefaultValues(e.target.value)}
+              >
+                <Radio.Button
+                  value={{
+                    email: "super.admin@tl.com",
+                    password: "123456super.admin",
+                  }}
+                >
+                  Super Admin
+                </Radio.Button>
+                <Radio.Button
+                  value={{
+                    email: "admin@tl.com",
+                    password: "123456admin",
+                  }}
+                >
+                  Admin
+                </Radio.Button>
+                <Radio.Button
+                  value={{
+                    email: "customer01@tl.com",
+                    password: "123456",
+                  }}
+                >
+                  Customer
+                </Radio.Button>
+              </Radio.Group>
+            </div>
           </div>
         </Col>
       </Row>
