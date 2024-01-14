@@ -53,6 +53,7 @@ const BookingPage = () => {
   return (
     <div>
       <Header title="Booking" />
+      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
       <Table
         style={{ padding: "10px" }}
         loading={isLoading}
@@ -60,6 +61,7 @@ const BookingPage = () => {
         dataSource={booking}
         pagination={false}
       />
+      </div>
     </div>
   );
 };

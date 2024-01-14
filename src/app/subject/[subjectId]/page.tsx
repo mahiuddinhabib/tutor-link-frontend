@@ -29,7 +29,7 @@ const CategorizedServices = ({ params }: { params: { subjectId: string } }) => {
         All {subjectData?.title} Tuitions
       </h1>
 
-      <Row gutter={[30, 30]} style={{ margin: "50px 10%" }}>
+      <Row gutter={[25, 25]} justify="center" className="container">
         {isLoading ? (
           [1, 2, 3].map((item) => (
             <Col
@@ -38,21 +38,23 @@ const CategorizedServices = ({ params }: { params: { subjectId: string } }) => {
               style={{ justifyContent: "center", alignItems: "center" }}
             >
               <Card
-              loading
-              style={{
-                minHeight: "400px",
-                maxWidth: 500,
-                margin: "0 auto",
-              }}
-            />
+                loading
+                style={{
+                  minHeight: "400px",
+                  maxWidth: 500,
+                  margin: "0 auto",
+                }}
+              />
             </Col>
           ))
         ) : data?.length ? (
           data?.map((service: any) => (
             <Col
-              span={8}
+              xs={24}
+              md={12}
+              lg={7}
               key={service?.id}
-              style={{ justifyContent: "center", alignItems: "center" }}
+              // style={{ justifyContent: "center", alignItems: "center" }}
             >
               <ClickableCard key={service?.id} service={service} />
             </Col>

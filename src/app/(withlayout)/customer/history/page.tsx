@@ -32,13 +32,15 @@ const ServiceHistoryPage = () => {
   return (
     <div>
       <Header title="Service History" />
-      <Table
-        style={{ padding: "10px" }}
-        loading={isLoading}
-        columns={columns}
-        dataSource={bookingHistory}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={bookingHistory}
+          pagination={false}
+        />
+      </div>
     </div>
   );
 };

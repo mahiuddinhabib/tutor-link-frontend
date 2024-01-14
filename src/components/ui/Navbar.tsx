@@ -107,7 +107,7 @@ const Navbar = () => {
           style={{
             color: "gray",
             fontSize: 25,
-            marginLeft: 15,
+            marginLeft: 30,
           }}
           onClick={() => setOpenMenu(true)}
         />
@@ -136,7 +136,7 @@ const Navbar = () => {
         </Link>
         <Dropdown menu={{ items }}>
           <Avatar
-            style={{ marginRight: 15, border: "1px solid #d9d9d9" }}
+            style={{ marginRight: 30, border: "1px solid #d9d9d9" }}
             size="large"
             src={
               data?.profileImg || (
@@ -160,23 +160,10 @@ const Navbar = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                marginLeft: 15,
+                marginLeft: 30,
               }}
             >
               <Image src={BrandIcon} alt="BrandIcon" height={35} />
-              <h1
-                style={{
-                  display: "inline-block",
-                  marginLeft: 7,
-                  // fontSize: "3rem",
-                  fontWeight: "bolder",
-                  fontStyle: "italic",
-                  color: token.colorPrimary,
-                  fontFamily: "Lora",
-                }}
-              >
-                Tutor Link
-              </h1>
             </div>
           </Link>
           <Menu
@@ -196,7 +183,7 @@ const Navbar = () => {
         <Dropdown menu={{ items }}>
           <Avatar
             style={{
-              marginRight: 15,
+              marginRight: 30,
               border: "1px solid #d9d9d9",
             }}
             size="large"

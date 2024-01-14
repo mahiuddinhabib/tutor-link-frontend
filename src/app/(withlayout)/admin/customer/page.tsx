@@ -81,13 +81,15 @@ const CustomerPage = () => {
   return (
     <div>
       <Header title="Customers" />
-      <Table
-        style={{ padding: "10px" }}
-        loading={isLoading}
-        columns={columns}
-        dataSource={customers}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={customers}
+          pagination={false}
+        />
+      </div>
       <CustomModal
         title={
           <>

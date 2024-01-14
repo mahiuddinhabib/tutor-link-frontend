@@ -93,6 +93,7 @@ const UpdateSuperAdminProfile = () => {
                     name="email"
                     size="large"
                     label="Email"
+                    disabled
                   />
                 </Col>
                 <Col

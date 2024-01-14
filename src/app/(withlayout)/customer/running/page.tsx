@@ -62,10 +62,7 @@ const RunningServicePage = () => {
       render: function (data: any) {
         return (
           <>
-            <Button
-              onClick={() => completeHandler(data?.id)}
-              type="primary"
-            >
+            <Button onClick={() => completeHandler(data?.id)} type="primary">
               {/* <DeleteOutlined /> */}
               Complete
             </Button>
@@ -78,13 +75,15 @@ const RunningServicePage = () => {
   return (
     <div>
       <Header title="Running Services" />
-      <Table
-      style={{padding:"10px"}}
-        loading={isLoading}
-        columns={columns}
-        dataSource={runningBooking}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={runningBooking}
+          pagination={false}
+        />
+      </div>
     </div>
   );
 };

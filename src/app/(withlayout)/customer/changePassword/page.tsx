@@ -13,6 +13,12 @@ const ChangePasswordPage = () => {
     useChangePasswordMutation();
 
   const onSubmit = async (values: any) => {
+    if(values.newPassword !== values.confirmPassword){
+      message.error("New Password and Confirm Password must be same!");
+      return;
+    }
+    values = delete values.confirmPassword;
+    console.log(values);
     try {
       const res = await changePassword(values).unwrap();
       console.log(res);
@@ -68,6 +74,19 @@ const ChangePasswordPage = () => {
                   type="password"
                   size="large"
                   label="New Password"
+                  required
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput
+                  name="confirmPassword"
+                  type="password"
+                  size="large"
+                  label="Confirm Password"
                   required
                 />
               </div>

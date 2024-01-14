@@ -13,6 +13,14 @@ const ChangePasswordPage = () => {
     useUpdateProfileMutation();
 
   const onSubmit = async (values: any) => {
+    if (values.newPassword !== values.confirmPassword) {
+      message.error("New Password and Confirm Password must be same!");
+      return;
+    }
+    values = {
+      oldPassword: values.oldPassword,
+      newPassword: values.newPassword,
+    };
     try {
       const res = await updateProfile(values).unwrap();
       if (res?.id) {
@@ -29,21 +37,30 @@ const ChangePasswordPage = () => {
       align="middle"
       style={{
         minHeight: "100vh",
+        padding: "10px",
       }}
     >
-      <Col sm={12} md={16} lg={10}>
-        <Image src={loginImage} width={500} alt="login image" />
+      <Col xs={0} lg={8}>
+        <Image
+          src={loginImage}
+          width={0}
+          height={0}
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+          alt="login image"
+        />
       </Col>
       <Col
-        sm={12}
-        md={8}
+        xs={24}
         lg={8}
         style={{
           border: "1px solid #d9d9d9",
           borderRadius: "5px",
           padding: "15px",
           maxWidth: "500px",
-          margin: "0px auto",
+          // margin: "10px",
           // boxShadow:" 0 0 10px rgba(0,0,0,0.1)",
         }}
       >
@@ -75,6 +92,19 @@ const ChangePasswordPage = () => {
                 type="password"
                 size="large"
                 label="New Password"
+                required
+              />
+            </div>
+            <div
+              style={{
+                margin: "15px 0px",
+              }}
+            >
+              <FormInput
+                name="confirmPassword"
+                type="password"
+                size="large"
+                label="Confirm Password"
                 required
               />
             </div>

@@ -54,12 +54,19 @@ const ServicePage = () => {
       title: "Title",
       render: function (data: any) {
         return (
-          <span style={{display:"flex", justifyContent:"start", alignItems:"center", gap:"10px"}}>
+          <span
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
             <Image
               src={data?.coverImg}
               width={40}
               height={30}
-              style={{borderRadius: "5px" }}
+              style={{ borderRadius: "5px" }}
               alt="card image"
             />
             {data?.title}
@@ -134,7 +141,7 @@ const ServicePage = () => {
   return (
     <div>
       <Header title="Services" />
-      <div style={{ padding: "10px" }}>
+      <div style={{ padding: "10px", overflowX: "auto" }}>
         <CustomTable
           loading={isLoading}
           columns={columns}

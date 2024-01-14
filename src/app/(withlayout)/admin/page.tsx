@@ -45,7 +45,7 @@ const UpdateAdminProfile = () => {
       {userLoading || userUpdateLoading ? (
         <LoadingSpinner />
       ) : (
-        <div style={{margin:"15px"}}>
+        <div style={{ margin: "15px" }}>
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -92,6 +92,7 @@ const UpdateAdminProfile = () => {
                     name="email"
                     size="large"
                     label="Email"
+                    disabled
                   />
                 </Col>
                 <Col

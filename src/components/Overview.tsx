@@ -8,7 +8,7 @@ const Overview = () => {
       <Row gutter={{ md: 50 }} justify="center">
         <h2
           className="mobileMenuIcon"
-          style={{ fontSize: "35px", marginBottom: "25px" }}
+          style={{ fontSize: "35px", marginBottom: "25px", textAlign: "center" }}
         >
           Want to Be a Tutor?
         </h2>

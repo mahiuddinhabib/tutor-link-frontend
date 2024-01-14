@@ -27,7 +27,6 @@ const Header = ({ title }: { title: string }) => {
       ),
     },
   ];
-  const { role } = getUserInfo() as any;
   return (
     <AntHeader
       style={{

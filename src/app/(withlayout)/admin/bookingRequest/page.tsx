@@ -67,7 +67,7 @@ const BookingRequestPage = () => {
             <Button
               onClick={() => updateStatusHandler(data?.id, "approved")}
               type="primary"
-              style={{marginRight: "10px"}}
+              style={{ marginRight: "10px" }}
             >
               {/* <DeleteOutlined /> */}
               Approve
@@ -89,13 +89,15 @@ const BookingRequestPage = () => {
   return (
     <div>
       <Header title="Booking Requests" />
-      <Table
-        style={{ padding: "10px" }}
-        loading={isLoading}
-        columns={columns}
-        dataSource={requestedBooking}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={requestedBooking}
+          pagination={false}
+        />
+      </div>
     </div>
   );
 };

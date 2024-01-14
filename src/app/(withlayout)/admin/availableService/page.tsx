@@ -112,13 +112,15 @@ const AvailableServicePage = () => {
   return (
     <div>
       <Header title="Available Services" />
-      <Table
-        style={{ padding: "10px" }}
-        loading={isLoading}
-        columns={columns}
-        dataSource={availableService}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={availableService}
+          pagination={false}
+        />
+      </div>
       <CustomModal
         title={
           <h3>

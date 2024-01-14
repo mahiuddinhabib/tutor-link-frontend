@@ -75,13 +75,15 @@ const PendingServicePage = () => {
   return (
     <div>
       <Header title="Pending Services" />
-      <Table
-      style={{padding:"10px"}}
-        loading={isLoading}
-        columns={columns}
-        dataSource={pendingBooking}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={pendingBooking}
+          pagination={false}
+        />
+      </div>
     </div>
   );
 };

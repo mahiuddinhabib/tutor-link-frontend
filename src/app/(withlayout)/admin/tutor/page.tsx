@@ -82,13 +82,15 @@ const TutorPage = () => {
   return (
     <div>
       <Header title="Tutors" />
-      <Table
-        style={{ padding: "10px" }}
-        loading={isLoading}
-        columns={columns}
-        dataSource={tutors}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={tutors}
+          pagination={false}
+        />
+      </div>
       <CustomModal
         title={
           <>

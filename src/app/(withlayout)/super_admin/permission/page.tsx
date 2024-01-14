@@ -105,13 +105,15 @@ const PermissionPage = () => {
   return (
     <div>
       <Header title="Manage Permissions" />
-      <Table
-        style={{ padding: "10px" }}
-        loading={isLoading}
-        columns={columns}
-        dataSource={withoutSuperAdmin}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={withoutSuperAdmin}
+          pagination={false}
+        />
+      </div>
       <CustomModal
         title={
           <>
@@ -124,8 +126,9 @@ const PermissionPage = () => {
         isOpen={open}
         closeModal={() => setOpen(false)}
         handleOk={permissionHandler}
-        okText="Delete"
-        okType="danger"
+        showCancelButton={false}
+        okText="Yes"
+        okType="primary"
       >
         <p className="my-5">Do you want to make him {idValue.value}?</p>
       </CustomModal>

@@ -81,13 +81,15 @@ const AdminPage = () => {
   return (
     <div>
       <Header title="Admins" />
-      <Table
-        style={{ padding: "10px" }}
-        loading={isLoading}
-        columns={columns}
-        dataSource={admins}
-        pagination={false}
-      />
+      <div style={{ overflowX: "auto" }}>
+        <Table
+          style={{ padding: "10px" }}
+          loading={isLoading}
+          columns={columns}
+          dataSource={admins}
+          pagination={false}
+        />
+      </div>
       <CustomModal
         title={
           <>

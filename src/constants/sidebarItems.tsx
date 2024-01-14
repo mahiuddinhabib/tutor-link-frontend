@@ -127,8 +127,17 @@ export const sidebarItems = (role: string) => {
   ];
 
   const superAdminSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
-    // ...commonAdminSidebarItems,
+    {
+      label: "Profile",
+      key: "profile",
+      icon: <SolutionOutlined />,
+      children: [
+        {
+          label: <Link href={`/${role}`}>Account Profile</Link>,
+          key: `profile`,
+        },
+      ],
+    },
     {
       label: "Manage Admin",
       icon: <TeamOutlined />,

@@ -2,12 +2,15 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import Header from "@/components/ui/Header";
 import {
   useGetSingleUserQuery,
   useUpdateUserMutation,
 } from "@/redux/api/userApi";
-import { Button, message } from "antd";
-import React from "react";
+import { Avatar, Button, message } from "antd";
+import Image from "next/image";
+import commonProfileImg from "@/assets/profile.png";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const UpdateAdminPage = ({ params }: { params: { adminId: string } }) => {
   const adminId = params.adminId;
@@ -15,7 +18,7 @@ const UpdateAdminPage = ({ params }: { params: { adminId: string } }) => {
   const { data: adminData, isLoading } = useGetSingleUserQuery(adminId);
   //   console.log(adminData);
 
-  const [updateUser] = useUpdateUserMutation();
+  const [updateUser, {isLoading:isUpdateLoading}] = useUpdateUserMutation();
   //@ts-ignore
 
   const onSubmit = async (values: any) => {
@@ -39,64 +42,94 @@ const UpdateAdminPage = ({ params }: { params: { adminId: string } }) => {
   };
   return (
     <div>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Update This Profile
-      </h1>
+      <Header title="Update Admin" />
 
-      <div style={{ margin: "auto", width: "50%" }}>
-        <Form submitHandler={onSubmit} defaultValues={defaultValues}>
-          <div
-            style={{
-              border: "1px solid #d9d9d9",
-              borderRadius: "5px",
-              padding: "15px",
-              marginBottom: "10px",
-            }}
-          >
+      {isLoading || isUpdateLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div style={{ margin: "auto", maxWidth: "500px", padding: "10px" }}>
+          <Form submitHandler={onSubmit} defaultValues={defaultValues}>
             <div
               style={{
-                margin: "15px 0px",
+                border: "1px solid #d9d9d9",
+                borderRadius: "5px",
+                padding: "15px",
+                marginBottom: "10px",
               }}
             >
-              <FormInput type="text" name="name" size="large" label="name" />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <Avatar
+                  size={100}
+                  // icon={<UserOutlined />}
+                  src={
+                    adminData?.profileImg || (
+                      <Image src={commonProfileImg} alt="customer profile" />
+                    )
+                  }
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput type="text" name="name" size="large" label="name" />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput
+                  type="email"
+                  name="email"
+                  size="large"
+                  label="Email"
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput
+                  type="text"
+                  name="contactNo"
+                  size="large"
+                  label="Contact No"
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormInput
+                  type="text"
+                  name="address"
+                  size="large"
+                  label="Address"
+                />
+              </div>
             </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput type="email" name="email" size="large" label="Email" />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                htmlType="submit"
+                type="primary"
+                style={{ margin: "0 auto" }}
+              >
+                Update
+              </Button>
             </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                type="text"
-                name="contactNo"
-                size="large"
-                label="Contact No"
-              />
-            </div>
-            <div
-              style={{
-                margin: "15px 0px",
-              }}
-            >
-              <FormInput
-                type="text"
-                name="address"
-                size="large"
-                label="Address"
-              />
-            </div>
-          </div>
-          <Button htmlType="submit" type="primary">
-            Update
-          </Button>
-        </Form>
-      </div>
+          </Form>
+        </div>
+      )}
     </div>
   );
 };

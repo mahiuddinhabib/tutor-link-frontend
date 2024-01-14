@@ -71,14 +71,10 @@ const ServicesByCategory = () => {
                 <Link href={`/subject/${subject?.id}`}>
                   <Card
                     hoverable
-                    // bordered
                     style={{
-                      maxWidth: 500,
-                      // height: 150,
-                      // borderColor: token.colorPrimaryBorderHover,
                       border: "none",
                       textAlign: "center",
-                      padding: "30px",
+                      padding: "30px 0",
                       backgroundColor: token.colorPrimaryBorder,
                       margin: "0 auto",
                       color: token.colorSuccessActive,
