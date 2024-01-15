@@ -32,7 +32,7 @@ const ServiceHistoryPage = () => {
   return (
     <div>
       <Header title="Service History" />
-      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+      <div style={{ overflowX: "auto" }}>
         <Table
           style={{ padding: "10px" }}
           loading={isLoading}

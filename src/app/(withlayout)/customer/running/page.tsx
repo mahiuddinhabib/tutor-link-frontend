@@ -75,7 +75,7 @@ const RunningServicePage = () => {
   return (
     <div>
       <Header title="Running Services" />
-      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+      <div style={{ overflowX: "auto" }}>
         <Table
           style={{ padding: "10px" }}
           loading={isLoading}

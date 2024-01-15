@@ -75,7 +75,7 @@ const PendingServicePage = () => {
   return (
     <div>
       <Header title="Pending Services" />
-      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+      <div style={{ overflowX: "auto" }}>
         <Table
           style={{ padding: "10px" }}
           loading={isLoading}

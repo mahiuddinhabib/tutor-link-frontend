@@ -3,27 +3,34 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import Header from "@/components/ui/Header";
-import { useChangePasswordMutation, useUpdateProfileMutation } from "@/redux/api/profileApi";
+import loginImage from "@/assets/login-img.png";
+import {
+  useChangePasswordMutation,
+} from "@/redux/api/profileApi";
 
 import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ChangePasswordPage = () => {
+  const router = useRouter();
   const [changePassword, { isLoading: userUpdateLoading }] =
     useChangePasswordMutation();
-
   const onSubmit = async (values: any) => {
-    if(values.newPassword !== values.confirmPassword){
+    if (values.newPassword !== values.confirmPassword) {
       message.error("New Password and Confirm Password must be same!");
       return;
     }
-    values = delete values.confirmPassword;
-    console.log(values);
+    values = {
+      oldPassword: values.oldPassword,
+      newPassword: values.newPassword,
+    };
     try {
       const res = await changePassword(values).unwrap();
       console.log(res);
       if (res?.email) {
         message.success("Password Successfully Updated!");
+        router.push("/customer");
       }
     } catch (err: any) {
       message.error(err.message);
@@ -38,21 +45,40 @@ const ChangePasswordPage = () => {
         align="middle"
         style={{
           minHeight: "100vh",
+          padding: "10px",
         }}
       >
+        <Col xs={0} lg={8}>
+          <Image
+            src={loginImage}
+            width={0}
+            height={0}
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            alt="login image"
+          />
+        </Col>
         <Col
-          sm={12}
-          md={8}
+          xs={24}
           lg={8}
           style={{
             border: "1px solid #d9d9d9",
             borderRadius: "5px",
             padding: "15px",
             maxWidth: "500px",
-            margin: "0px auto",
+            // margin: "10px",
             // boxShadow:" 0 0 10px rgba(0,0,0,0.1)",
           }}
         >
+          <h1
+            style={{
+              margin: "15px 0px",
+            }}
+          >
+            Change Password
+          </h1>
           <div>
             <Form submitHandler={onSubmit}>
               <div>

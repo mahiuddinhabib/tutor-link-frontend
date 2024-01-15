@@ -112,7 +112,7 @@ const AvailableServicePage = () => {
   return (
     <div>
       <Header title="Available Services" />
-      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+      <div style={{ overflowX: "auto" }}>
         <Table
           style={{ padding: "10px" }}
           loading={isLoading}

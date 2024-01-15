@@ -7,8 +7,10 @@ import { useUpdateProfileMutation } from "@/redux/api/profileApi";
 
 import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ChangePasswordPage = () => {
+  const router = useRouter();
   const [updateProfile, { isLoading: userUpdateLoading }] =
     useUpdateProfileMutation();
 
@@ -25,6 +27,7 @@ const ChangePasswordPage = () => {
       const res = await updateProfile(values).unwrap();
       if (res?.id) {
         message.success("Password Successfully Updated!");
+        router.push("/admin");
       }
     } catch (err: any) {
       message.error(err.message);

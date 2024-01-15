@@ -53,7 +53,7 @@ const BookingPage = () => {
   return (
     <div>
       <Header title="Booking" />
-      <div style={{ overflowX: "auto", backgroundColor: "white" }}>
+      <div style={{ overflowX: "auto" }}>
       <Table
         style={{ padding: "10px" }}
         loading={isLoading}
